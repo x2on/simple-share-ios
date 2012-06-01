@@ -3,6 +3,12 @@
 ## Overview
 Simple-Share is an easy drop-in library for sharing on iOS.
 
+### Supported Shares
+- Facebook
+- Twitter (iOS 5 only)
+- Mail
+- Safari
+
 ## Instructions
 Run ./build.sh and drop the libsimple-share.a file into your Xcode project.
 Copy the include folder also to your project and set the "Header Search Path" to this folder.
