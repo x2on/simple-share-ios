@@ -21,3 +21,6 @@ you can share an URL to Facebook with this single line:
 
 ## Sample App
 The project also includes a sample iOS App
+
+## License
+Apache License, Version 2.0 - See LICENSE
