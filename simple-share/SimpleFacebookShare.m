@@ -64,14 +64,23 @@
     [facebook logout];
 }
 
-- (void) shareUrl:(NSURL *)theUrl {
+- (void) shareParams:(NSMutableDictionary *)theParams {
     if ([facebook isSessionValid]) {
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[theUrl absoluteString], @"link", appActionLink, @"actions", nil];
-        [facebook dialog:@"feed" andParams:params andDelegate:self];
+        [facebook dialog:@"feed" andParams:theParams andDelegate:self];
     }
     else {
         [self authorizesIfNeeded];
     }
+}
+
+- (void) shareUrl:(NSURL *)theUrl {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[theUrl absoluteString], @"link", appActionLink, @"actions", nil];
+    [self shareParams:params];
+}
+
+- (void) shareText:(NSString *)theText {
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:theText, @"description", appActionLink, @"actions", nil];
+    [self shareParams:params];
 }
 
 #pragma mark - FBDialogDelegate

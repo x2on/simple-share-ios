@@ -29,5 +29,6 @@
 - (void) authorizesIfNeeded;
 - (void) logOut;
 - (void) shareUrl:(NSURL *)theUrl;
+- (void) shareText:(NSString *)theText;
 
 @end
