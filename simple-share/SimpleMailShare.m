@@ -24,16 +24,6 @@
     MFMailComposeViewController *mailComposeViewController;
 }
 
-- (id) init {
-    self = [super init];
-    if (self) {
-        mailComposeViewController = [[MFMailComposeViewController alloc] init];
-        mailComposeViewController.mailComposeDelegate = self;
-    }
-
-    return self;
-}
-
 - (void) dealloc {
     mailComposeViewController.mailComposeDelegate = nil;
 }
@@ -44,6 +34,9 @@
 
 - (void) shareText:(NSString *)text subject:(NSString *)subject isHTML:(BOOL)isHTML {
     if ([self canSendMail]) {
+        mailComposeViewController.mailComposeDelegate = nil;
+        mailComposeViewController = [[MFMailComposeViewController alloc] init];
+        mailComposeViewController.mailComposeDelegate = self;
         [mailComposeViewController setSubject:subject];
         [mailComposeViewController setMessageBody:text isHTML:isHTML];
 
