@@ -17,8 +17,7 @@
 		FD4711DB157769B800428920 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4711DA157769B800428920 /* main.m */; };
 		FD4711DF157769B800428920 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4711DE157769B800428920 /* AppDelegate.m */; };
 		FD4711E2157769B800428920 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4711E1157769B800428920 /* ViewController.m */; };
-		FD4711E5157769B800428920 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD4711E3157769B800428920 /* ViewController_iPhone.xib */; };
-		FD4711E8157769B800428920 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD4711E6157769B800428920 /* ViewController_iPad.xib */; };
+		FD4711E5157769B800428920 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD4711E3157769B800428920 /* ViewController.xib */; };
 		FD4711EF15776A2100428920 /* libsimple-share.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD47116A157686F300428920 /* libsimple-share.a */; };
 		FD471207157774CE00428920 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD471205157774C300428920 /* Security.framework */; };
 		FD471208157774D200428920 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD471205157774C300428920 /* Security.framework */; };
@@ -50,7 +49,7 @@
 		FDE86D5D1578BA6000891E81 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5C1578BA6000891E81 /* SSKeychain.m */; };
 		FDE86D5D1578BA6000891E83 /* SimpleFacebookConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E82 /* SimpleFacebookConfiguration.m */; };
 		FDE86D5D1578BA6000891E85 /* SimpleFacebookConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E84 /* SimpleFacebookConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDE86D5D1578BA6000891E87 /* SimpleShare.m in Sources */ = {isa = PBXBuildFile; };
+		FDE86D5D1578BA6000891E87 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FDE86D5D1578BA6000891E8B /* SimpleMailShare.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E8A /* SimpleMailShare.m */; };
 		FDE86D5D1578BA6000891E8D /* SimpleMailShare.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E8C /* SimpleMailShare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDE86D5D1578BA6000891E8F /* ViewControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E8E /* ViewControllerHelper.m */; };
@@ -88,8 +87,7 @@
 		FD4711DE157769B800428920 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FD4711E0157769B800428920 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		FD4711E1157769B800428920 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		FD4711E4157769B800428920 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
-		FD4711E7157769B800428920 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
+		FD4711E4157769B800428920 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
 		FD471205157774C300428920 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FD471208157774D200428921 /* SimpleTwitterShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTwitterShare.m; sourceTree = "<group>"; };
 		FD471208157774D200428923 /* SimpleTwitterShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTwitterShare.h; sourceTree = "<group>"; };
@@ -257,8 +255,7 @@
 				FD4711DE157769B800428920 /* AppDelegate.m */,
 				FD4711E0157769B800428920 /* ViewController.h */,
 				FD4711E1157769B800428920 /* ViewController.m */,
-				FD4711E3157769B800428920 /* ViewController_iPhone.xib */,
-				FD4711E6157769B800428920 /* ViewController_iPad.xib */,
+				FD4711E3157769B800428920 /* ViewController.xib */,
 				FD4711D5157769B800428920 /* Supporting Files */,
 			);
 			path = "simple-share-demo";
@@ -399,8 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD4711D9157769B800428920 /* InfoPlist.strings in Resources */,
-				FD4711E5157769B800428920 /* ViewController_iPhone.xib in Resources */,
-				FD4711E8157769B800428920 /* ViewController_iPad.xib in Resources */,
+				FD4711E5157769B800428920 /* ViewController.xib in Resources */,
 				FDE86D151578B5C300891E81 /* SVProgressHUD.bundle in Resources */,
 				FDE86D2D1578B64200891E81 /* FBDialog.bundle in Resources */,
 			);
@@ -422,7 +418,7 @@
 				FDE86D2B1578B63600891E81 /* FBRequest.m in Sources */,
 				FDCB3DDD1578BCD700810D66 /* SBJSONtoJSONKit.m in Sources */,
 				FDE86D5D1578BA6000891E83 /* SimpleFacebookConfiguration.m in Sources */,
-				FDE86D5D1578BA6000891E87 /* SimpleShare.m in Sources */,
+				FDE86D5D1578BA6000891E87 /* (null) in Sources */,
 				FDE86D5D1578BA6000891E8B /* SimpleMailShare.m in Sources */,
 				FDE86D5D1578BA6000891E8F /* ViewControllerHelper.m in Sources */,
 				FDE86D5D1578BA6000891E93 /* SimpleSafariShare.m in Sources */,
@@ -461,20 +457,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		FD4711E3157769B800428920 /* ViewController_iPhone.xib */ = {
+		FD4711E3157769B800428920 /* ViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				FD4711E4157769B800428920 /* en */,
 			);
-			name = ViewController_iPhone.xib;
-			sourceTree = "<group>";
-		};
-		FD4711E6157769B800428920 /* ViewController_iPad.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FD4711E7157769B800428920 /* en */,
-			);
-			name = ViewController_iPad.xib;
+			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
