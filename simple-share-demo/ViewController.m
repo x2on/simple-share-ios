@@ -28,6 +28,7 @@
 
 @implementation ViewController {
     SimpleFacebookShare *facebookShare;
+    SimpleMailShare *simpleMailShare;
 }
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil simpleFacebookShare:(SimpleFacebookShare *)theSimpleFacebookShare {
@@ -63,7 +64,9 @@
 }
 
 - (IBAction)mailButtonPressed:(id)sender {
-    SimpleMailShare *simpleMailShare = [[SimpleMailShare alloc] init];    
+    if(simpleMailShare == nil)
+        simpleMailShare = [[SimpleMailShare alloc] init];    
+
     [simpleMailShare shareText:@"Some text to email." subject:@"The Subject" isHTML:NO];
 }
 

@@ -22,6 +22,8 @@
 
 @interface SimpleMailShare : NSObject <MFMailComposeViewControllerDelegate>
 
+@property (nonatomic, strong) MFMailComposeViewController *mailComposeViewController;
+
 - (BOOL) canSendMail;
 - (void) shareText:(NSString *)text subject:(NSString *)subject isHTML:(BOOL)isHTML;
 

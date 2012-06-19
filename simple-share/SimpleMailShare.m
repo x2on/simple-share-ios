@@ -20,13 +20,9 @@
 #import "SimpleMailShare.h"
 #import "ViewControllerHelper.h"
 
-@implementation SimpleMailShare {
-    MFMailComposeViewController *mailComposeViewController;
-}
+@implementation SimpleMailShare
 
-- (void) dealloc {
-    mailComposeViewController.mailComposeDelegate = nil;
-}
+@synthesize mailComposeViewController = _mailComposeViewController;
 
 - (BOOL) canSendMail {
     return [MFMailComposeViewController canSendMail];
@@ -34,21 +30,30 @@
 
 - (void) shareText:(NSString *)text subject:(NSString *)subject isHTML:(BOOL)isHTML {
     if ([self canSendMail]) {
-        mailComposeViewController.mailComposeDelegate = nil;
-        mailComposeViewController = [[MFMailComposeViewController alloc] init];
-        mailComposeViewController.mailComposeDelegate = self;
-        [mailComposeViewController setSubject:subject];
-        [mailComposeViewController setMessageBody:text isHTML:isHTML];
+
+        if(_mailComposeViewController == nil)
+            _mailComposeViewController = [[MFMailComposeViewController alloc] init];
+            
+        _mailComposeViewController.mailComposeDelegate = self;
+        [_mailComposeViewController setSubject:subject];
+        [_mailComposeViewController setMessageBody:text isHTML:isHTML];
+
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            _mailComposeViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+        }
 
         UIViewController *viewController = [ViewControllerHelper getCurrentRootViewController];
-        [viewController presentModalViewController:mailComposeViewController animated:YES];
+        [viewController presentModalViewController:_mailComposeViewController animated:YES];
     }
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
-    [mailComposeViewController dismissModalViewControllerAnimated:YES];
+    NSLog(@"Dismissing...");
+    UIViewController *viewController = [ViewControllerHelper getCurrentRootViewController];
+    [viewController dismissModalViewControllerAnimated:YES];
 }
+
 
 @end
