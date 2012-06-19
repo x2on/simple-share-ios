@@ -20,6 +20,7 @@
 #import "ViewController.h"
 #import "SimpleFacebookShare.h"
 #import "SimpleTwitterShare.h"
+#import "SimpleMailShare.h"
 
 @interface ViewController ()
 
@@ -46,7 +47,7 @@
     }
 }
 
-- (IBAction)postButtonPressed:(id)sender {
+- (IBAction)facebookButtonPressed:(id)sender {
     [facebookShare shareUrl:[NSURL URLWithString:@"http://www.felixschulze.de"]];
 }
 
@@ -60,4 +61,10 @@
         [alertView show];
     }
 }
+
+- (IBAction)mailButtonPressed:(id)sender {
+    SimpleMailShare *simpleMailShare = [[SimpleMailShare alloc] init];    
+    [simpleMailShare shareText:@"Some text to email." subject:@"The Subject" isHTML:NO];
+}
+
 @end
