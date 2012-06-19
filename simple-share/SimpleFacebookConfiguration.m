@@ -20,6 +20,14 @@
 #import "SimpleFacebookConfiguration.h"
 #import "JSONKit.h"
 
+#define kFBConfigIconURLCacheTime 604800
+
+@interface SimpleFacebookConfiguration (PrivateMethods)
+-(BOOL) appIconIsCached;
+-(void) fetchIcon;
+@end
+
+
 @implementation SimpleFacebookConfiguration
 @synthesize appId;
 @synthesize iOSAppId;
@@ -41,24 +49,55 @@
     self->iOSAppId = aID;
     
     //Grab the photo url as well.
-    NSURL *appInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://ax.phobos.apple.com.edgesuite.net/WebObjects/MZStoreServices.woa/wa/wsLookup?id=%@", self.iOSAppId]];
-    NSURLRequest *appInfoRequest = [NSURLRequest requestWithURL:appInfoURL];
-    
-    NSURLResponse *resp = nil;
-    NSError *err = nil;
-    NSData *response = [NSURLConnection sendSynchronousRequest:appInfoRequest returningResponse:&resp error:&err];
-    NSString * theString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding]; 
-    
-    NSDictionary *appInfo = [theString objectFromJSONString];
-    NSDictionary *appInfoResults = [[appInfo objectForKey:@"results"] objectAtIndex:0];
-    
-    self.appIconUrl = [appInfoResults objectForKey:@"artworkUrl512"];    
+    if(![self appIconIsCached])[self fetchIcon];
 }
 
 -(NSString *) getAppIconUrl
 {
     if(self.appIconUrl != nil)return self.appIconUrl;   
     else return @"";
+}
+
+-(BOOL) appIconIsCached
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults stringForKey:@"kFBConfigAppIconURL"] != nil)
+    {
+        //The app icon url exists. Lets check the expiry time.
+        NSDate *fetchedDate = (NSDate *)[defaults objectForKey:@"kFBConfigAppIconURLFetched"];
+        if(fabsf([fetchedDate timeIntervalSinceNow])>kFBConfigIconURLCacheTime) return NO;
+        else
+        {
+            self.appIconUrl = [defaults stringForKey:@"kFBConfigAppIconURL"];
+            return YES;   
+        }
+    }
+    
+    return NO;
+}
+
+-(void) fetchIcon
+{
+    NSURL *appInfoURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://ax.phobos.apple.com.edgesuite.net/WebObjects/MZStoreServices.woa/wa/wsLookup?id=%@", self.iOSAppId]];
+
+    //AsynchronousRequest to grab the data
+    NSURLRequest *request = [NSURLRequest requestWithURL:appInfoURL];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    {
+        NSString* returnedDataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSDictionary *appInfo = [returnedDataString objectFromJSONString];
+        NSDictionary *appInfoResults = [[appInfo objectForKey:@"results"] objectAtIndex:0];
+        
+        self.appIconUrl = [appInfoResults objectForKey:@"artworkUrl512"];
+        
+        //Set the defaults
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:self.appIconUrl forKey:@"kFBConfigAppIconURL"];
+        [defaults setObject:[NSDate date] forKey:@"kFBConfigAppIconURLFetched"];
+        [defaults synchronize];
+    }];    
 }
 
 @end
