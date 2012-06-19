@@ -37,8 +37,8 @@
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUIButton" id="240694317">
 						<reference key="NSNextResponder" ref="774585933"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 20}, {280, 37}}</string>
+						<int key="NSvFlags">301</int>
+						<string key="NSFrame">{{20, 166}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="709260791"/>
@@ -73,8 +73,8 @@
 					</object>
 					<object class="IBUIButton" id="709260791">
 						<reference key="NSNextResponder" ref="774585933"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 65}, {280, 37}}</string>
+						<int key="NSvFlags">301</int>
+						<string key="NSFrame">{{20, 211}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -93,10 +93,10 @@
 						<reference key="IBUIFontDescription" ref="984987912"/>
 						<reference key="IBUIFont" ref="742182644"/>
 					</object>
-					<object class="IBUIButton" id="263611533">
+					<object class="IBUIButton" id="894004881">
 						<reference key="NSNextResponder" ref="774585933"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 110}, {280, 37}}</string>
+						<int key="NSvFlags">301</int>
+						<string key="NSFrame">{{20, 256}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -163,7 +163,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">mailButtonPressed:</string>
-						<reference key="source" ref="263611533"/>
+						<reference key="source" ref="894004881"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -195,7 +195,7 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="240694317"/>
 							<reference ref="709260791"/>
-							<reference ref="263611533"/>
+							<reference ref="894004881"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -211,7 +211,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
-						<reference key="object" ref="263611533"/>
+						<reference key="object" ref="894004881"/>
 						<reference key="parent" ref="774585933"/>
 					</object>
 				</array>
