@@ -55,7 +55,7 @@
 - (void) authorizesIfNeeded {
     if (![facebook isSessionValid]) {
         NSLog(@"Login");
-        NSArray *permissions = [NSArray arrayWithObjects:@"publish_stream", @"offline_access", nil];
+        NSArray *permissions = [NSArray arrayWithObjects:@"publish_stream", nil];
         [facebook authorize:permissions];
     }
 }
