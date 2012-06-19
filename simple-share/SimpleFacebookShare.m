@@ -60,6 +60,11 @@
     }
 }
 
+- (bool) isAuthorized
+{
+    return [facebook isSessionValid];
+}
+
 - (void) logOut {
     [facebook logout];
 }
