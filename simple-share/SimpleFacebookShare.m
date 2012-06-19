@@ -112,7 +112,7 @@
 
     // Successful posts return a post_id
     if ([params valueForKey:@"post_id"]) {
-        [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
+        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Gespeichert", @"Success")];
     }
 }
 
