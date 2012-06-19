@@ -23,6 +23,9 @@
 @class SimpleFacebookConfiguration;
 
 @interface SimpleFacebookShare : NSObject <FBSessionDelegate, FBDialogDelegate>
+{
+    SimpleFacebookConfiguration *config;
+}
 
 - (id) initWithSimpleFacebookConfiguration:(SimpleFacebookConfiguration *)theSimpleFacebookConfiguration;
 - (BOOL) handleOpenURL:(NSURL *)theUrl;
