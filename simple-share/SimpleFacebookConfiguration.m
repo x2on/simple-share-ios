@@ -20,6 +20,7 @@
 #import "SimpleFacebookConfiguration.h"
 #import "JSONKit.h"
 
+//604800 seconds is one week.
 #define kFBConfigIconURLCacheTime 604800
 
 @interface SimpleFacebookConfiguration (PrivateMethods)
@@ -65,7 +66,7 @@
     {
         //The app icon url exists. Lets check the expiry time.
         NSDate *fetchedDate = (NSDate *)[defaults objectForKey:@"kFBConfigAppIconURLFetched"];
-        if(fabsf([fetchedDate timeIntervalSinceNow])>kFBConfigIconURLCacheTime) return NO;
+        if(fabsf([fetchedDate timeIntervalSinceNow]) > kFBConfigIconURLCacheTime) return NO;
         else
         {
             self.appIconUrl = [defaults stringForKey:@"kFBConfigAppIconURL"];
@@ -84,19 +85,27 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:appInfoURL];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     
+    
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
     {
-        NSString* returnedDataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSDictionary *appInfo = [returnedDataString objectFromJSONString];
-        NSDictionary *appInfoResults = [[appInfo objectForKey:@"results"] objectAtIndex:0];
-        
-        self.appIconUrl = [appInfoResults objectForKey:@"artworkUrl512"];
-        
-        //Set the defaults
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setValue:self.appIconUrl forKey:@"kFBConfigAppIconURL"];
-        [defaults setObject:[NSDate date] forKey:@"kFBConfigAppIconURLFetched"];
-        [defaults synchronize];
+        if(data)
+        {
+            NSString* returnedDataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSDictionary *appInfo = [returnedDataString objectFromJSONString];
+            NSDictionary *appInfoResults = [[appInfo objectForKey:@"results"] objectAtIndex:0];
+            
+            self.appIconUrl = [appInfoResults objectForKey:@"artworkUrl512"];
+            
+            //Set the defaults
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setValue:self.appIconUrl forKey:@"kFBConfigAppIconURL"];
+            [defaults setObject:[NSDate date] forKey:@"kFBConfigAppIconURLFetched"];
+            [defaults synchronize];                          
+        }
+        else
+        {
+            NSLog(@"Error: %@", error);
+        }
     }];    
 }
 
