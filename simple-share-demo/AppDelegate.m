@@ -41,11 +41,7 @@
 
     self.simpleFacebookShare = [[SimpleFacebookShare alloc] initWithSimpleFacebookConfiguration:facebookConfiguration];
 
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil simpleFacebookShare:simpleFacebookShare];
-    } else {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil simpleFacebookShare:simpleFacebookShare];
-    }
+    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil simpleFacebookShare:simpleFacebookShare];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
 
