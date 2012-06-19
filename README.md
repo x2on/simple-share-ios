@@ -10,8 +10,13 @@ Simple-Share is an easy drop-in library for sharing on iOS.
 - Safari
 
 ## Instructions
-First checkout the submodules:
+Clone the repository recursively
+`git clone --recursive git://github.com/x2on/simple-share-ios.git`
+
+or alternatively clone and checkout the submodules separately:
 ```bash
+git clone git://github.com/x2on/simple-share-ios.git
+cd simple-share-ios
 git submodule init
 git submodule update
 ```

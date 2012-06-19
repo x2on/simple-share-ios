@@ -36,11 +36,12 @@
 - (id) initWithSimpleFacebookConfiguration:(SimpleFacebookConfiguration *)theSimpleFacebookConfiguration {
     self = [super init];
     if (self) {
-        appId = theSimpleFacebookConfiguration.appId;
+        config = theSimpleFacebookConfiguration;
+        appId = config.appId;
         NSAssert(appId, @"AppId must be defined");
         facebook = [[Facebook alloc] initWithAppId:appId andDelegate:self];
         [self loadCredentials];
-        NSArray *actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:theSimpleFacebookConfiguration.appName, @"name", theSimpleFacebookConfiguration.appUrl, @"link", nil], nil];
+        NSArray *actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:config.appName, @"name", config.appUrl, @"link", nil], nil];
         appActionLink = [actionLinks JSONString];
         [facebook extendAccessTokenIfNeeded];
 
@@ -55,9 +56,14 @@
 - (void) authorizesIfNeeded {
     if (![facebook isSessionValid]) {
         NSLog(@"Login");
-        NSArray *permissions = [NSArray arrayWithObjects:@"publish_stream", @"offline_access", nil];
+        NSArray *permissions = [NSArray arrayWithObjects:@"publish_stream", nil];
         [facebook authorize:permissions];
     }
+}
+
+- (bool) isAuthorized
+{
+    return [facebook isSessionValid];
 }
 
 - (void) logOut {
@@ -79,7 +85,14 @@
 }
 
 - (void) shareText:(NSString *)theText {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:theText, @"description", appActionLink, @"actions", nil];
+
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   //appActionLink, @"link",
+                                   theText, @"description",
+                                   config.appDescription, @"caption",
+                                   config.appName, @"name",
+                                   config.appIconUrl, @"picture",
+                                   nil];
     [self shareParams:params];
 }
 
@@ -99,7 +112,7 @@
 
     // Successful posts return a post_id
     if ([params valueForKey:@"post_id"]) {
-        [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
+        [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"Gespeichert", @"Success")];
     }
 }
 

@@ -39,6 +39,12 @@
     facebookConfiguration.appName = @"theAppName";
     facebookConfiguration.appUrl = @"theAppUrl";
 
+    //Setting the iOS App ID will automatically fetch the application's icon to use when sharing on facebook.
+    facebookConfiguration.iOSAppId = @"theiOSAppId"; 
+
+    //Optional description for facebook sharing
+    facebookConfiguration.appDescription = @"theAppDescription";
+
     self.simpleFacebookShare = [[SimpleFacebookShare alloc] initWithSimpleFacebookConfiguration:facebookConfiguration];
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {

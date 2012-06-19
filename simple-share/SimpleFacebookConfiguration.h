@@ -22,7 +22,10 @@
 @interface SimpleFacebookConfiguration : NSObject
 
 @property (nonatomic, strong) NSString *appId;
+@property (nonatomic, strong) NSString *iOSAppId;
 @property (nonatomic, strong) NSString *appName;
+@property (nonatomic, strong) NSString *appDescription;
 @property (nonatomic, strong) NSString *appUrl;
+@property (nonatomic, strong) NSString *appIconUrl;
 
 @end
