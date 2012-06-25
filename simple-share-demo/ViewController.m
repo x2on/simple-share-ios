@@ -46,7 +46,7 @@
     }
 }
 
-- (IBAction)postButtonPressed:(id)sender {
+- (IBAction)facebookShareButtonPressed:(id)sender {
     [facebookShare shareUrl:[NSURL URLWithString:@"http://www.felixschulze.de"]];
 }
 

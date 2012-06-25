@@ -25,7 +25,7 @@
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil simpleFacebookShare:(SimpleFacebookShare *)theSimpleFacebookShare;
 
-- (IBAction)postButtonPressed:(id)sender;
+- (IBAction)facebookShareButtonPressed:(id)sender;
 - (IBAction)twitterButtonPressed:(id)sender;
 
 @end
