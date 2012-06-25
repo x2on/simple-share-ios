@@ -20,6 +20,7 @@
 #import "ViewController.h"
 #import "SimpleFacebookShare.h"
 #import "SimpleTwitterShare.h"
+#import "SimpleMailShare.h"
 
 @interface ViewController ()
 
@@ -27,12 +28,14 @@
 
 @implementation ViewController {
     SimpleFacebookShare *facebookShare;
+    SimpleMailShare *simpleMailShare;
 }
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil simpleFacebookShare:(SimpleFacebookShare *)theSimpleFacebookShare {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         facebookShare = theSimpleFacebookShare;
+        simpleMailShare = [[SimpleMailShare alloc] init];
     }
     return self;
 }
@@ -59,5 +62,9 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Not supported" message:@"Twitter is not supported" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }
+}
+
+- (IBAction)mailButtonPressed:(id)sender {
+    [simpleMailShare shareText:@"Some text" subject:@"Some subject" isHTML:NO];
 }
 @end
