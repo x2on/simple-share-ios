@@ -24,6 +24,18 @@ you can share an URL to Facebook with this single line:
 [facebookShare shareUrl:[NSURL URLWithString:@"http://www.felixschulze.de"]];
 ```
 
+Twitter:
+```objective-c
+[simpleTwitterShare shareText:@"Some text to share"];
+```
+
+Mail:
+```objective-c
+[simpleMailShare shareText:@"Some text" subject:@"Some subject" isHTML:NO];
+```
+
+
+
 ## Sample App
 The project also includes a sample iOS App
 
