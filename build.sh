@@ -7,7 +7,7 @@
 #  Copyright 2012 Felix Schulze. All rights reserved.
 ###########################################################################
 #
-SDKVERSION="5.1"
+SDKVERSION="6.0"
 #
 ###########################################################################
 #
@@ -25,7 +25,7 @@ if ! xcodebuild -project "simple-share.xcodeproj" -target simple-share -configur
 fi
 
 # Build the targets
-if ! xcodebuild -project "simple-share.xcodeproj" -target simple-share -configuration "Release" -sdk "$DEVICESDK" -arch "armv6 armv7" build ; then
+if ! xcodebuild -project "simple-share.xcodeproj" -target simple-share -configuration "Release" -sdk "$DEVICESDK" -arch "armv7 armv7s" build ; then
 	exit 1
 fi
 if ! xcodebuild -project "simple-share.xcodeproj" -target simple-share -configuration "Release" -sdk "$SIMSDK" build ; then
