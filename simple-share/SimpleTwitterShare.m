@@ -18,8 +18,10 @@
 //  limitations under the License.
 
 #import <Twitter/Twitter.h>
+#import <Social/Social.h>
 #import "SimpleTwitterShare.h"
 #import "ViewControllerHelper.h"
+#import "SVProgressHUD.h"
 
 
 @implementation SimpleTwitterShare {
@@ -27,8 +29,12 @@
 }
 
 - (BOOL) canSendTweet {
+    Class socialClass = NSClassFromString(@"SLComposeViewController");
+    if (socialClass != nil) {
+        return YES;
+    }
     Class tweeterClass = NSClassFromString(@"TWTweetComposeViewController");
-    if (tweeterClass == nil) {
+    if (tweeterClass != nil) {
         return NO;
     }
     if ([TWTweetComposeViewController canSendTweet]) {
@@ -42,17 +48,34 @@
 
         UIViewController *viewController = [ViewControllerHelper getCurrentRootViewController];
 
-        TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
-        [tweetViewController setInitialText:theText];
+        Class socialClass = NSClassFromString(@"SLComposeViewController");
+        if (socialClass != nil) {
+            SLComposeViewController *twitterController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            twitterController.completionHandler = ^(SLComposeViewControllerResult result) {
+                [twitterController dismissViewControllerAnimated:YES completion:nil];
+                if (result == SLComposeViewControllerResultDone) {
+                    [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
+                }
 
-        tweetViewController.completionHandler = ^(TWTweetComposeViewControllerResult result) {
-            if (result == TWTweetComposeViewControllerResultDone) {
-            } else if (result == TWTweetComposeViewControllerResultCancelled) {
-            }
-            [viewController dismissViewControllerAnimated:YES completion:nil];
-        };
+            };
+            [twitterController setInitialText:theText];
+            [viewController presentViewController:twitterController animated:YES completion:nil];
 
-        [viewController presentViewController:tweetViewController animated:YES completion:nil];
+        } else {
+
+
+            TWTweetComposeViewController *tweetViewController = [[TWTweetComposeViewController alloc] init];
+            [tweetViewController setInitialText:theText];
+
+            tweetViewController.completionHandler = ^(TWTweetComposeViewControllerResult result) {
+                if (result == TWTweetComposeViewControllerResultDone) {
+                } else if (result == TWTweetComposeViewControllerResultCancelled) {
+                }
+                [viewController dismissViewControllerAnimated:YES completion:nil];
+            };
+
+            [viewController presentViewController:tweetViewController animated:YES completion:nil];
+        }
     }
 }
 
