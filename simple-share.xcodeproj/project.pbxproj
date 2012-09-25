@@ -26,6 +26,8 @@
 		FD471208157774D200428924 /* SimpleTwitterShare.h in Headers */ = {isa = PBXBuildFile; fileRef = FD471208157774D200428923 /* SimpleTwitterShare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD47123215777EE200428920 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD47122F15777ED900428920 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FD47123315777EE500428920 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD47122F15777ED900428920 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FD9662E6161201A0005EB4C8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9662E5161201A0005EB4C8 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FD9662ED1612055D005EB4C8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9662E5161201A0005EB4C8 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FDCB3DDA1578BCD700810D66 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = FDCB3DD61578BCD700810D66 /* JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDCB3DDB1578BCD700810D66 /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = FDCB3DD71578BCD700810D66 /* SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDCB3DDC1578BCD700810D66 /* SBJSONtoJSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FDCB3DD81578BCD700810D66 /* SBJSONtoJSONKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -50,7 +52,6 @@
 		FDE86D5D1578BA6000891E81 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5C1578BA6000891E81 /* SSKeychain.m */; };
 		FDE86D5D1578BA6000891E83 /* SimpleFacebookConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E82 /* SimpleFacebookConfiguration.m */; };
 		FDE86D5D1578BA6000891E85 /* SimpleFacebookConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E84 /* SimpleFacebookConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDE86D5D1578BA6000891E87 /* SimpleShare.m in Sources */ = {isa = PBXBuildFile; };
 		FDE86D5D1578BA6000891E8B /* SimpleMailShare.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E8A /* SimpleMailShare.m */; };
 		FDE86D5D1578BA6000891E8D /* SimpleMailShare.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E8C /* SimpleMailShare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDE86D5D1578BA6000891E8F /* ViewControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E8E /* ViewControllerHelper.m */; };
@@ -94,6 +95,7 @@
 		FD471208157774D200428921 /* SimpleTwitterShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTwitterShare.m; sourceTree = "<group>"; };
 		FD471208157774D200428923 /* SimpleTwitterShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTwitterShare.h; sourceTree = "<group>"; };
 		FD47122F15777ED900428920 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		FD9662E5161201A0005EB4C8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		FDCB3DD61578BCD700810D66 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = JSON/JSON.h; sourceTree = "<group>"; };
 		FDCB3DD71578BCD700810D66 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = JSON/SBJSON.h; sourceTree = "<group>"; };
 		FDCB3DD81578BCD700810D66 /* SBJSONtoJSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSONtoJSONKit.h; path = JSON/SBJSONtoJSONKit.h; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD9662E6161201A0005EB4C8 /* Social.framework in Frameworks */,
 				FDCB3E2E1578DD7D00810D66 /* MessageUI.framework in Frameworks */,
 				FD47123215777EE200428920 /* Twitter.framework in Frameworks */,
 				FD47116E157686F300428920 /* Foundation.framework in Frameworks */,
@@ -149,6 +152,7 @@
 				FD4711D1157769B800428920 /* Foundation.framework in Frameworks */,
 				FDCB3E2F1578DD7F00810D66 /* MessageUI.framework in Frameworks */,
 				FD4711D3157769B800428920 /* CoreGraphics.framework in Frameworks */,
+				FD9662ED1612055D005EB4C8 /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +181,7 @@
 		FD47116C157686F300428920 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FD9662E5161201A0005EB4C8 /* Social.framework */,
 				FDCB3E2C1578DD7300810D66 /* MessageUI.framework */,
 				FD47122F15777ED900428920 /* Twitter.framework */,
 				FD471205157774C300428920 /* Security.framework */,
@@ -422,7 +427,6 @@
 				FDE86D2B1578B63600891E81 /* FBRequest.m in Sources */,
 				FDCB3DDD1578BCD700810D66 /* SBJSONtoJSONKit.m in Sources */,
 				FDE86D5D1578BA6000891E83 /* SimpleFacebookConfiguration.m in Sources */,
-				FDE86D5D1578BA6000891E87 /* SimpleShare.m in Sources */,
 				FDE86D5D1578BA6000891E8B /* SimpleMailShare.m in Sources */,
 				FDE86D5D1578BA6000891E8F /* ViewControllerHelper.m in Sources */,
 				FDE86D5D1578BA6000891E93 /* SimpleSafariShare.m in Sources */,
@@ -499,7 +503,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -516,7 +520,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

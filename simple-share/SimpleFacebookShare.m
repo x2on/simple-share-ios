@@ -22,6 +22,8 @@
 #import "JSONKit.h"
 #import "SSKeychain.h"
 #import "SimpleFacebookConfiguration.h"
+#import "ViewControllerHelper.h"
+#import <Social/Social.h>
 
 #define FACEBOOK_ACCESS_TOKEN_KEY @"kSHKFacebookAccessToken"
 #define FACEBOOK_EXPIRY_DATE_KEY @"kSHKFacebookExpiryDate"
@@ -31,19 +33,32 @@
     NSString *appId;
     NSString *appActionLink;
     Facebook *facebook;
+    BOOL facebookiOSShareSupported;
+    SLComposeViewController *fbController;
 }
 
 - (id) initWithSimpleFacebookConfiguration:(SimpleFacebookConfiguration *)theSimpleFacebookConfiguration {
     self = [super init];
     if (self) {
-        appId = theSimpleFacebookConfiguration.appId;
-        NSAssert(appId, @"AppId must be defined");
-        facebook = [[Facebook alloc] initWithAppId:appId andDelegate:self];
-        [self loadCredentials];
-        NSArray *actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:theSimpleFacebookConfiguration.appName, @"name", theSimpleFacebookConfiguration.appUrl, @"link", nil], nil];
-        appActionLink = [actionLinks JSONString];
-        [facebook extendAccessTokenIfNeeded];
-
+        
+        Class socialClass = NSClassFromString(@"SLComposeViewController");
+        if (socialClass != nil) {
+            facebookiOSShareSupported = YES;
+            fbController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            fbController.completionHandler = ^(SLComposeViewControllerResult result) {
+                [fbController dismissViewControllerAnimated:YES completion:nil];
+                if (result == SLComposeViewControllerResultDone) {
+                    [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
+                }
+            };
+        } else {
+            appId = theSimpleFacebookConfiguration.appId;
+            facebook = [[Facebook alloc] initWithAppId:appId andDelegate:self];
+            [self loadCredentials];
+            NSArray *actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:theSimpleFacebookConfiguration.appName, @"name", theSimpleFacebookConfiguration.appUrl, @"link", nil], nil];
+            appActionLink = [actionLinks JSONString];
+            [facebook extendAccessTokenIfNeeded];
+        }
     }
     return self;
 }
@@ -73,14 +88,32 @@
     }
 }
 
+- (void) showFacebookController {
+    if (facebookiOSShareSupported && fbController) {
+        UIViewController *viewController = [ViewControllerHelper getCurrentRootViewController];
+        [viewController presentModalViewController:fbController animated:YES];
+    }
+}
+
 - (void) shareUrl:(NSURL *)theUrl {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[theUrl absoluteString], @"link", appActionLink, @"actions", nil];
-    [self shareParams:params];
+    if (facebookiOSShareSupported) {
+        [fbController addURL:theUrl];
+        [self showFacebookController];
+    } else {
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[theUrl absoluteString], @"link", appActionLink, @"actions", nil];
+        [self shareParams:params];
+    }
 }
 
 - (void) shareText:(NSString *)theText {
-    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:theText, @"description", appActionLink, @"actions", nil];
-    [self shareParams:params];
+    if (facebookiOSShareSupported) {
+        [fbController setInitialText:theText];
+        [self showFacebookController];
+    } else {
+
+        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:theText, @"description", appActionLink, @"actions", nil];
+        [self shareParams:params];
+    }
 }
 
 #pragma mark - FBDialogDelegate
