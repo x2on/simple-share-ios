@@ -5,7 +5,7 @@ Simple-Share is an easy drop-in library for sharing on iOS.
 
 ### Supported Shares
 - Facebook (iOS 4/5 uses facebook sdk, iOS 6 uses integrated social framework)
-- Twitter (iOS 5 only)
+- Twitter (iOS 5/6 only)
 - Mail
 - Safari
 
