@@ -34,7 +34,7 @@
         return YES;
     }
     Class tweeterClass = NSClassFromString(@"TWTweetComposeViewController");
-    if (tweeterClass != nil) {
+    if (tweeterClass == nil) {
         return NO;
     }
     if ([TWTweetComposeViewController canSendTweet]) {
