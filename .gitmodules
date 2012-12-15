@@ -1,12 +1,6 @@
-[submodule "submodules/JSONKit"]
-	path = submodules/JSONKit
-	url = https://github.com/johnezang/JSONKit.git
 [submodule "submodules/facebook-ios-sdk"]
 	path = submodules/facebook-ios-sdk
 	url = https://github.com/facebook/facebook-ios-sdk.git
 [submodule "submodules/SVProgressHUD"]
 	path = submodules/SVProgressHUD
 	url = https://github.com/samvermette/SVProgressHUD.git
-[submodule "submodules/sskeychain"]
-	path = submodules/sskeychain
-	url = https://github.com/samsoffes/sskeychain.git

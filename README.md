@@ -4,8 +4,8 @@
 Simple-Share is an easy drop-in library for sharing on iOS.
 
 ### Supported Shares
-- Facebook (iOS 4/5 uses facebook sdk, iOS 6 uses integrated social framework)
-- Twitter (iOS 5/6 only)
+- Facebook (facebook-ios-sdk 3.1.1)
+- Twitter
 - Mail
 - Safari
 
@@ -15,6 +15,13 @@ First checkout the submodules:
 git submodule init
 git submodule update
 ```
+
+Then build the facebook sdk:
+```bash
+cd submodules/facebook-ios-sdk/scripts
+./build_framework.sh
+```
+
 Then run ```./build.sh``` and drop the libsimple-share.a file into your Xcode project.
 Copy the include folder also to your project and set the "Header Search Path" to this folder.
 
@@ -34,7 +41,8 @@ Mail:
 [simpleMailShare shareText:@"Some text" subject:@"Some subject" isHTML:NO];
 ```
 
-
+## Compatibility
+Lowest supported iOS is 5.0
 
 ## Sample App
 The project also includes a sample iOS App

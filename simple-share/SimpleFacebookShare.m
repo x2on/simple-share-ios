@@ -19,205 +19,120 @@
 
 #import "SimpleFacebookShare.h"
 #import "SVProgressHUD.h"
-#import "JSONKit.h"
-#import "SSKeychain.h"
-#import "SimpleFacebookConfiguration.h"
-#import "ViewControllerHelper.h"
-#import <Social/Social.h>
-
-#define FACEBOOK_ACCESS_TOKEN_KEY @"kSHKFacebookAccessToken"
-#define FACEBOOK_EXPIRY_DATE_KEY @"kSHKFacebookExpiryDate"
-#define FACEBOOK_SERVICE @"SFFacebookShare"
 
 @implementation SimpleFacebookShare {
-    NSString *appId;
     NSString *appActionLink;
-    Facebook *facebook;
-    BOOL facebookiOSShareSupported;
-    SLComposeViewController *fbController;
 }
 
-- (id) initWithSimpleFacebookConfiguration:(SimpleFacebookConfiguration *)theSimpleFacebookConfiguration {
+- (id)initWithAppName:(NSString *)theAppName appUrl:(NSString *)theAppUrl {
     self = [super init];
     if (self) {
-        
-        Class socialClass = NSClassFromString(@"SLComposeViewController");
-        if (socialClass != nil) {
-            facebookiOSShareSupported = YES;
-            fbController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
-            fbController.completionHandler = ^(SLComposeViewControllerResult result) {
-                [fbController dismissViewControllerAnimated:YES completion:nil];
-                if (result == SLComposeViewControllerResultDone) {
-                    [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
-                }
-            };
-        } else {
-            appId = theSimpleFacebookConfiguration.appId;
-            facebook = [[Facebook alloc] initWithAppId:appId andDelegate:self];
-            [self loadCredentials];
-            NSArray *actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:theSimpleFacebookConfiguration.appName, @"name", theSimpleFacebookConfiguration.appUrl, @"link", nil], nil];
-            appActionLink = [actionLinks JSONString];
-            [facebook extendAccessTokenIfNeeded];
-        }
+        NSArray *actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:theAppName, @"name", theAppUrl, @"link", nil], nil];
+        NSError *error = nil;
+
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:actionLinks options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        appActionLink = jsonString;
     }
     return self;
 }
 
-- (BOOL) handleOpenURL:(NSURL *)theUrl {
-    return [facebook handleOpenURL:theUrl];
+- (BOOL)handleOpenURL:(NSURL *)theUrl {
+    return [FBSession.activeSession handleOpenURL:theUrl];
 }
 
-- (void) authorizesIfNeeded {
-    if (![facebook isSessionValid]) {
-        NSLog(@"Login");
-        NSArray *permissions = [NSArray arrayWithObjects:@"publish_stream", @"offline_access", nil];
-        [facebook authorize:permissions];
-    }
+
+- (void)logOut {
+    [FBSession.activeSession closeAndClearTokenInformation];
 }
 
-- (void) logOut {
-    [facebook logout];
+- (void)shareUrl:(NSURL *)theUrl {
+    [self _shareInitalParams:@{
+            @"link" : [theUrl absoluteString],
+            @"actions" : appActionLink
+    }];
 }
 
-- (void) shareParams:(NSMutableDictionary *)theParams {
-    if ([facebook isSessionValid]) {
-        [facebook dialog:@"feed" andParams:theParams andDelegate:self];
+
+- (void)shareText:(NSString *)theText {
+    [self _shareInitalParams:@{
+            @"description" : theText,
+            @"actions" : appActionLink
+    }];
+}
+
+- (void)_shareInitalParams:(NSDictionary *)params {
+    if (FBSession.activeSession.isOpen) {
+        [self _shareAndReauthorize:params];
     }
     else {
-        [self authorizesIfNeeded];
+        [self _shareAndOpenSession:params];
     }
 }
 
-- (void) showFacebookController {
-    if (facebookiOSShareSupported && fbController) {
-        UIViewController *viewController = [ViewControllerHelper getCurrentRootViewController];
-        [viewController presentModalViewController:fbController animated:YES];
+- (void)_shareAndReauthorize:(NSDictionary *)params {
+    if ([FBSession.activeSession.permissions indexOfObject:@"publish_stream"] == NSNotFound) {
+        [FBSession.activeSession reauthorizeWithPublishPermissions:[NSArray arrayWithObject:@"publish_stream"]
+                                                   defaultAudience:FBSessionDefaultAudienceFriends
+                                                 completionHandler:^(FBSession *session, NSError *error) {
+                                                     if (!error) {
+                                                         NSLog(@"Fehler bei der Authorizierung: %@", error);
+                                                         [SVProgressHUD showErrorWithStatus:@"Fehler bei der Authorizierung."];
+                                                     }
+                                                     else {
+                                                         [self _shareParams:params];
+
+                                                     }
+                                                 }];
+    }
+    else {
+        [self _shareParams:params];
     }
 }
 
-- (void) shareUrl:(NSURL *)theUrl {
-    if (facebookiOSShareSupported) {
-        [fbController addURL:theUrl];
-        [self showFacebookController];
-    } else {
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:[theUrl absoluteString], @"link", appActionLink, @"actions", nil];
-        [self shareParams:params];
+- (void)_shareAndOpenSession:(NSDictionary *)params {
+
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        [FBSession.activeSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+            [self _shareAndReauthorize:params];
+        }];
+    }
+    else {
+        [FBSession openActiveSessionWithPermissions:[NSArray arrayWithObject:@"publish_stream"] allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+            if (error) {
+                NSLog(@"Fehler bei der Authorizierung: %@", error);
+                [SVProgressHUD showErrorWithStatus:@"Fehler bei der Authorizierung."];
+            }
+            else {
+                [self _shareAndReauthorize:params];
+            }
+        }];
     }
 }
 
-- (void) shareText:(NSString *)theText {
-    if (facebookiOSShareSupported) {
-        [fbController setInitialText:theText];
-        [self showFacebookController];
-    } else {
+- (void)_shareParams:(NSDictionary *)params {
 
-        NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:theText, @"description", appActionLink, @"actions", nil];
-        [self shareParams:params];
-    }
+    [FBRequestConnection startWithGraphPath:@"me/feed"
+                                 parameters:params
+                                 HTTPMethod:@"POST"
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (error) {
+                                  NSLog(@"Fehler beim Speichern: %@", error);
+                                  [SVProgressHUD showErrorWithStatus:@"Fehler beim Speichern."];
+                              }
+                              else {
+                                  [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
+                              }
+                          }];
 }
 
-#pragma mark - FBDialogDelegate
 
-- (void) dialogDidComplete:(FBDialog *)dialog {
-    //Do nothing
+- (void)close {
+    [FBSession.activeSession close];
 }
 
-- (void) dialogCompleteWithUrl:(NSURL *)url {
-    if (![url query]) {
-        NSLog(@"User canceled dialog or there was an error");
-        return;
-    }
-
-    NSDictionary *params = [self parseURLParams:[url query]];
-
-    // Successful posts return a post_id
-    if ([params valueForKey:@"post_id"]) {
-        [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
-    }
-}
-
-- (NSDictionary *) parseURLParams:(NSString *)query {
-    NSArray *pairs = [query componentsSeparatedByString:@"&"];
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    for (NSString *pair in pairs) {
-        NSArray *kv = [pair componentsSeparatedByString:@"="];
-        NSString *val = [[kv objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [params setObject:val forKey:[kv objectAtIndex:0]];
-    }
-    return params;
-}
-
-- (void) dialogDidNotCompleteWithUrl:(NSURL *)url {
-    //Do nothing
-}
-
-- (void) dialogDidNotComplete:(FBDialog *)dialog {
-    //Do nothing
-}
-
-- (void) dialog:(FBDialog *)dialog didFailWithError:(NSError *)error {
-    [SVProgressHUD showErrorWithStatus:[error localizedDescription]];
-}
-
-- (BOOL) dialog:(FBDialog *)dialog shouldOpenURLInExternalBrowser:(NSURL *)url {
-    return NO;
-}
-
-#pragma mark - FBSessionDelegate
-
-- (void) fbSessionInvalidated {
-    [self removeFacebookCredentials];
-}
-
-- (void) fbDidLogin {
-    [self saveCredentials:facebook.accessToken expiresAt:facebook.expirationDate];
-
-}
-
-- (void) fbDidNotLogin:(BOOL)cancelled {
-
-}
-
-- (void) fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
-    [self saveCredentials:accessToken expiresAt:expiresAt];
-}
-
-- (void) fbDidLogout {
-    [self removeFacebookCredentials];
-}
-
-#pragma mark - Helper
-
-- (void) saveCredentials:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
-    [SSKeychain setPassword:accessToken forService:FACEBOOK_SERVICE account:FACEBOOK_ACCESS_TOKEN_KEY];
-    [SSKeychain setPassword:[self dateToString:expiresAt] forService:FACEBOOK_SERVICE account:FACEBOOK_EXPIRY_DATE_KEY];
-}
-
-- (void) removeFacebookCredentials {
-    [SSKeychain deletePasswordForService:FACEBOOK_SERVICE account:FACEBOOK_ACCESS_TOKEN_KEY];
-    [SSKeychain deletePasswordForService:FACEBOOK_SERVICE account:FACEBOOK_EXPIRY_DATE_KEY];
-}
-
-- (void) loadCredentials {
-    NSString *accessToken = [SSKeychain passwordForService:FACEBOOK_SERVICE account:FACEBOOK_ACCESS_TOKEN_KEY];
-    NSString *expirationDate = [SSKeychain passwordForService:FACEBOOK_SERVICE account:FACEBOOK_EXPIRY_DATE_KEY];
-
-    if (accessToken && expirationDate) {
-        facebook.accessToken = accessToken;
-        facebook.expirationDate = [self stringToDate:expirationDate];
-    }
-}
-
-- (NSString *) dateToString:(NSDate *)date {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [dateFormatter stringFromDate:date];
-}
-
-- (NSDate *) stringToDate:(NSString *)string {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [dateFormatter dateFromString:string];
+- (void)handleDidBecomeActive {
+    [FBSession.activeSession handleDidBecomeActive];
 }
 
 @end

@@ -21,7 +21,6 @@
 
 #import "ViewController.h"
 #import "SimpleFacebookShare.h"
-#import "SimpleFacebookConfiguration.h"
 
 @implementation AppDelegate
 
@@ -34,12 +33,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    SimpleFacebookConfiguration *facebookConfiguration = [[SimpleFacebookConfiguration alloc] init];
-    facebookConfiguration.appId = @"theAppId";
-    facebookConfiguration.appName = @"theAppName";
-    facebookConfiguration.appUrl = @"theAppUrl";
-
-    self.simpleFacebookShare = [[SimpleFacebookShare alloc] initWithSimpleFacebookConfiguration:facebookConfiguration];
+    self.simpleFacebookShare = [[SimpleFacebookShare alloc] initWithAppName: @"Simple Share Demo" appUrl:@"http://www.felixschulze.de"];
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil simpleFacebookShare:simpleFacebookShare];
@@ -48,7 +42,6 @@
     }
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-
 
     return YES;
 }
@@ -80,12 +73,12 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [simpleFacebookShare handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [simpleFacebookShare close];
 }
 
 @end

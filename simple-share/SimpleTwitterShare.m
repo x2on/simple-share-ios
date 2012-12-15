@@ -51,8 +51,9 @@
         Class socialClass = NSClassFromString(@"SLComposeViewController");
         if (socialClass != nil) {
             SLComposeViewController *twitterController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            __weak SLComposeViewController *twitterControllerForBlock = twitterController;
             twitterController.completionHandler = ^(SLComposeViewControllerResult result) {
-                [twitterController dismissViewControllerAnimated:YES completion:nil];
+                [twitterControllerForBlock dismissViewControllerAnimated:YES completion:nil];
                 if (result == SLComposeViewControllerResultDone) {
                     [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
                 }

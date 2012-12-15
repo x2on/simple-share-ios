@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53C6C826167BA35C00481CD7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C6C825167BA35C00481CD7 /* FacebookSDK.framework */; };
+		53C6C827167BA35C00481CD7 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C6C825167BA35C00481CD7 /* FacebookSDK.framework */; };
+		53C6C841167BA84600481CD7 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C6C840167BA84600481CD7 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		53C6C844167BA84C00481CD7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C6C843167BA84C00481CD7 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		53C6C846167BA89F00481CD7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C6C845167BA89F00481CD7 /* libsqlite3.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		53C6C848167BA8C100481CD7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C6C847167BA8C100481CD7 /* QuartzCore.framework */; };
+		53FC8887167C947C00FF6141 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53FC8885167C947C00FF6141 /* FacebookSDKResources.bundle */; };
+		53FC8888167C947C00FF6141 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53FC8886167C947C00FF6141 /* FBUserSettingsViewResources.bundle */; };
 		FD47116E157686F300428920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD47116D157686F300428920 /* Foundation.framework */; };
 		FD4711AE1576881F00428920 /* SimpleFacebookShare.h in Headers */ = {isa = PBXBuildFile; fileRef = FD4711AC1576881F00428920 /* SimpleFacebookShare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD4711AF1576881F00428920 /* SimpleFacebookShare.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4711AD1576881F00428920 /* SimpleFacebookShare.m */; };
@@ -28,30 +36,10 @@
 		FD47123315777EE500428920 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD47122F15777ED900428920 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FD9662E6161201A0005EB4C8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9662E5161201A0005EB4C8 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FD9662ED1612055D005EB4C8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9662E5161201A0005EB4C8 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		FDCB3DDA1578BCD700810D66 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = FDCB3DD61578BCD700810D66 /* JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDCB3DDB1578BCD700810D66 /* SBJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = FDCB3DD71578BCD700810D66 /* SBJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDCB3DDC1578BCD700810D66 /* SBJSONtoJSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = FDCB3DD81578BCD700810D66 /* SBJSONtoJSONKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDCB3DDD1578BCD700810D66 /* SBJSONtoJSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCB3DD91578BCD700810D66 /* SBJSONtoJSONKit.m */; };
 		FDCB3E2E1578DD7D00810D66 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCB3E2C1578DD7300810D66 /* MessageUI.framework */; };
 		FDCB3E2F1578DD7F00810D66 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCB3E2C1578DD7300810D66 /* MessageUI.framework */; };
 		FDE86D131578B5AE00891E81 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4711AF1576881F00428951 /* SVProgressHUD.m */; };
 		FDE86D151578B5C300891E81 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FDE86D141578B5C300891E81 /* SVProgressHUD.bundle */; };
-		FDE86D211578B63600891E81 /* Facebook.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D161578B63600891E81 /* Facebook.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDE86D221578B63600891E81 /* Facebook.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D171578B63600891E81 /* Facebook.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FDE86D231578B63600891E81 /* FBConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D181578B63600891E81 /* FBConnect.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDE86D241578B63600891E81 /* FBDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D191578B63600891E81 /* FBDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDE86D251578B63600891E81 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D1A1578B63600891E81 /* FBDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FDE86D261578B63600891E81 /* FBFrictionlessRequestSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D1B1578B63600891E81 /* FBFrictionlessRequestSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDE86D271578B63600891E81 /* FBFrictionlessRequestSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D1C1578B63600891E81 /* FBFrictionlessRequestSettings.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FDE86D281578B63600891E81 /* FBLoginDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D1D1578B63600891E81 /* FBLoginDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDE86D291578B63600891E81 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D1E1578B63600891E81 /* FBLoginDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FDE86D2A1578B63600891E81 /* FBRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D1F1578B63600891E81 /* FBRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FDE86D2B1578B63600891E81 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D201578B63600891E81 /* FBRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FDE86D2D1578B64200891E81 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FDE86D2C1578B64200891E81 /* FBDialog.bundle */; };
-		FDE86D5A1578BA3200891E81 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D421578B95600891E81 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		FDE86D5D1578BA6000891E81 /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5C1578BA6000891E81 /* SSKeychain.m */; };
-		FDE86D5D1578BA6000891E83 /* SimpleFacebookConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E82 /* SimpleFacebookConfiguration.m */; };
-		FDE86D5D1578BA6000891E85 /* SimpleFacebookConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E84 /* SimpleFacebookConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDE86D5D1578BA6000891E8B /* SimpleMailShare.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E8A /* SimpleMailShare.m */; };
 		FDE86D5D1578BA6000891E8D /* SimpleMailShare.h in Headers */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E8C /* SimpleMailShare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDE86D5D1578BA6000891E8F /* ViewControllerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = FDE86D5D1578BA6000891E8E /* ViewControllerHelper.m */; };
@@ -71,6 +59,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		53C6C825167BA35C00481CD7 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "submodules/facebook-ios-sdk/build/FacebookSDK.framework"; sourceTree = "<group>"; };
+		53C6C840167BA84600481CD7 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		53C6C843167BA84C00481CD7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		53C6C845167BA89F00481CD7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		53C6C847167BA8C100481CD7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		53FC8885167C947C00FF6141 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "submodules/facebook-ios-sdk/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = SOURCE_ROOT; };
+		53FC8886167C947C00FF6141 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = "submodules/facebook-ios-sdk/build/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle"; sourceTree = SOURCE_ROOT; };
 		FD47116A157686F300428920 /* libsimple-share.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsimple-share.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD47116D157686F300428920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FD471171157686F300428920 /* simple-share-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "simple-share-Prefix.pch"; sourceTree = "<group>"; };
@@ -96,30 +91,8 @@
 		FD471208157774D200428923 /* SimpleTwitterShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTwitterShare.h; sourceTree = "<group>"; };
 		FD47122F15777ED900428920 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		FD9662E5161201A0005EB4C8 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		FDCB3DD61578BCD700810D66 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSON.h; path = JSON/JSON.h; sourceTree = "<group>"; };
-		FDCB3DD71578BCD700810D66 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSON.h; path = JSON/SBJSON.h; sourceTree = "<group>"; };
-		FDCB3DD81578BCD700810D66 /* SBJSONtoJSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SBJSONtoJSONKit.h; path = JSON/SBJSONtoJSONKit.h; sourceTree = "<group>"; };
-		FDCB3DD91578BCD700810D66 /* SBJSONtoJSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SBJSONtoJSONKit.m; path = JSON/SBJSONtoJSONKit.m; sourceTree = "<group>"; };
 		FDCB3E2C1578DD7300810D66 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		FDE86D141578B5C300891E81 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SVProgressHUD.bundle; path = submodules/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle; sourceTree = SOURCE_ROOT; };
-		FDE86D161578B63600891E81 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = "submodules/facebook-ios-sdk/src/Facebook.h"; sourceTree = SOURCE_ROOT; };
-		FDE86D171578B63600891E81 /* Facebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Facebook.m; path = "submodules/facebook-ios-sdk/src/Facebook.m"; sourceTree = SOURCE_ROOT; };
-		FDE86D181578B63600891E81 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBConnect.h; path = "submodules/facebook-ios-sdk/src/FBConnect.h"; sourceTree = SOURCE_ROOT; };
-		FDE86D191578B63600891E81 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBDialog.h; path = "submodules/facebook-ios-sdk/src/FBDialog.h"; sourceTree = SOURCE_ROOT; };
-		FDE86D1A1578B63600891E81 /* FBDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBDialog.m; path = "submodules/facebook-ios-sdk/src/FBDialog.m"; sourceTree = SOURCE_ROOT; };
-		FDE86D1B1578B63600891E81 /* FBFrictionlessRequestSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBFrictionlessRequestSettings.h; path = "submodules/facebook-ios-sdk/src/FBFrictionlessRequestSettings.h"; sourceTree = SOURCE_ROOT; };
-		FDE86D1C1578B63600891E81 /* FBFrictionlessRequestSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBFrictionlessRequestSettings.m; path = "submodules/facebook-ios-sdk/src/FBFrictionlessRequestSettings.m"; sourceTree = SOURCE_ROOT; };
-		FDE86D1D1578B63600891E81 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBLoginDialog.h; path = "submodules/facebook-ios-sdk/src/FBLoginDialog.h"; sourceTree = SOURCE_ROOT; };
-		FDE86D1E1578B63600891E81 /* FBLoginDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBLoginDialog.m; path = "submodules/facebook-ios-sdk/src/FBLoginDialog.m"; sourceTree = SOURCE_ROOT; };
-		FDE86D1F1578B63600891E81 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBRequest.h; path = "submodules/facebook-ios-sdk/src/FBRequest.h"; sourceTree = SOURCE_ROOT; };
-		FDE86D201578B63600891E81 /* FBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBRequest.m; path = "submodules/facebook-ios-sdk/src/FBRequest.m"; sourceTree = SOURCE_ROOT; };
-		FDE86D2C1578B64200891E81 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBDialog.bundle; path = "submodules/facebook-ios-sdk/src/FBDialog.bundle"; sourceTree = SOURCE_ROOT; };
-		FDE86D411578B95600891E81 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = submodules/JSONKit/JSONKit.h; sourceTree = SOURCE_ROOT; };
-		FDE86D421578B95600891E81 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = submodules/JSONKit/JSONKit.m; sourceTree = SOURCE_ROOT; };
-		FDE86D5B1578BA6000891E81 /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSKeychain.h; path = submodules/sskeychain/SSKeychain.h; sourceTree = SOURCE_ROOT; };
-		FDE86D5C1578BA6000891E81 /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSKeychain.m; path = submodules/sskeychain/SSKeychain.m; sourceTree = SOURCE_ROOT; };
-		FDE86D5D1578BA6000891E82 /* SimpleFacebookConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleFacebookConfiguration.m; sourceTree = "<group>"; };
-		FDE86D5D1578BA6000891E84 /* SimpleFacebookConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFacebookConfiguration.h; sourceTree = "<group>"; };
 		FDE86D5D1578BA6000891E8A /* SimpleMailShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleMailShare.m; sourceTree = "<group>"; };
 		FDE86D5D1578BA6000891E8C /* SimpleMailShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMailShare.h; sourceTree = "<group>"; };
 		FDE86D5D1578BA6000891E8E /* ViewControllerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerHelper.m; sourceTree = "<group>"; };
@@ -138,6 +111,7 @@
 				FD47123215777EE200428920 /* Twitter.framework in Frameworks */,
 				FD47116E157686F300428920 /* Foundation.framework in Frameworks */,
 				FD471207157774CE00428920 /* Security.framework in Frameworks */,
+				53C6C826167BA35C00481CD7 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +119,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53C6C848167BA8C100481CD7 /* QuartzCore.framework in Frameworks */,
+				53C6C846167BA89F00481CD7 /* libsqlite3.dylib in Frameworks */,
+				53C6C844167BA84C00481CD7 /* AdSupport.framework in Frameworks */,
+				53C6C841167BA84600481CD7 /* Accounts.framework in Frameworks */,
 				FD4711EF15776A2100428920 /* libsimple-share.a in Frameworks */,
 				FD47123315777EE500428920 /* Twitter.framework in Frameworks */,
 				FD4711D0157769B800428920 /* UIKit.framework in Frameworks */,
@@ -153,6 +131,7 @@
 				FDCB3E2F1578DD7F00810D66 /* MessageUI.framework in Frameworks */,
 				FD4711D3157769B800428920 /* CoreGraphics.framework in Frameworks */,
 				FD9662ED1612055D005EB4C8 /* Social.framework in Frameworks */,
+				53C6C827167BA35C00481CD7 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +160,11 @@
 		FD47116C157686F300428920 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53C6C847167BA8C100481CD7 /* QuartzCore.framework */,
+				53C6C845167BA89F00481CD7 /* libsqlite3.dylib */,
+				53C6C843167BA84C00481CD7 /* AdSupport.framework */,
+				53C6C840167BA84600481CD7 /* Accounts.framework */,
+				53C6C825167BA35C00481CD7 /* FacebookSDK.framework */,
 				FD9662E5161201A0005EB4C8 /* Social.framework */,
 				FDCB3E2C1578DD7300810D66 /* MessageUI.framework */,
 				FD47122F15777ED900428920 /* Twitter.framework */,
@@ -201,14 +185,10 @@
 				FDE86D5D1578BA6000891E8E /* ViewControllerHelper.m */,
 				FDE86D5D1578BA6000891E8C /* SimpleMailShare.h */,
 				FDE86D5D1578BA6000891E8A /* SimpleMailShare.m */,
-				FD47117A1576875C00428920 /* FBConnect */,
-				FDCB3DD51578BCBC00810D66 /* JSON */,
 				FD471208157774D200428923 /* SimpleTwitterShare.h */,
 				FD471208157774D200428921 /* SimpleTwitterShare.m */,
 				FD4711AC1576881F00428920 /* SimpleFacebookShare.h */,
 				FD4711AD1576881F00428920 /* SimpleFacebookShare.m */,
-				FDE86D5D1578BA6000891E84 /* SimpleFacebookConfiguration.h */,
-				FDE86D5D1578BA6000891E82 /* SimpleFacebookConfiguration.m */,
 				FD471170157686F300428920 /* Supporting Files */,
 			);
 			path = "simple-share";
@@ -220,24 +200,6 @@
 				FD471171157686F300428920 /* simple-share-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FD47117A1576875C00428920 /* FBConnect */ = {
-			isa = PBXGroup;
-			children = (
-				FDE86D161578B63600891E81 /* Facebook.h */,
-				FDE86D171578B63600891E81 /* Facebook.m */,
-				FDE86D181578B63600891E81 /* FBConnect.h */,
-				FDE86D191578B63600891E81 /* FBDialog.h */,
-				FDE86D1A1578B63600891E81 /* FBDialog.m */,
-				FDE86D1B1578B63600891E81 /* FBFrictionlessRequestSettings.h */,
-				FDE86D1C1578B63600891E81 /* FBFrictionlessRequestSettings.m */,
-				FDE86D1D1578B63600891E81 /* FBLoginDialog.h */,
-				FDE86D1E1578B63600891E81 /* FBLoginDialog.m */,
-				FDE86D1F1578B63600891E81 /* FBRequest.h */,
-				FDE86D201578B63600891E81 /* FBRequest.m */,
-			);
-			name = FBConnect;
 			sourceTree = "<group>";
 		};
 		FD4711AF1576881F00428949 /* SVProgressHUD */ = {
@@ -254,10 +216,7 @@
 		FD4711D4157769B800428920 /* simple-share-demo */ = {
 			isa = PBXGroup;
 			children = (
-				FDCB3DDE1578BCF100810D66 /* SSKeychain */,
-				FDE86D401578B94B00891E81 /* JSONKit */,
 				FD4711AF1576881F00428949 /* SVProgressHUD */,
-				FDE86D2C1578B64200891E81 /* FBDialog.bundle */,
 				FD4711DD157769B800428920 /* AppDelegate.h */,
 				FD4711DE157769B800428920 /* AppDelegate.m */,
 				FD4711E0157769B800428920 /* ViewController.h */,
@@ -272,41 +231,14 @@
 		FD4711D5157769B800428920 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				53FC8885167C947C00FF6141 /* FacebookSDKResources.bundle */,
+				53FC8886167C947C00FF6141 /* FBUserSettingsViewResources.bundle */,
 				FD4711D6157769B800428920 /* simple-share-demo-Info.plist */,
 				FD4711D7157769B800428920 /* InfoPlist.strings */,
 				FD4711DA157769B800428920 /* main.m */,
 				FD4711DC157769B800428920 /* simple-share-demo-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FDCB3DD51578BCBC00810D66 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				FDCB3DD61578BCD700810D66 /* JSON.h */,
-				FDCB3DD71578BCD700810D66 /* SBJSON.h */,
-				FDCB3DD81578BCD700810D66 /* SBJSONtoJSONKit.h */,
-				FDCB3DD91578BCD700810D66 /* SBJSONtoJSONKit.m */,
-			);
-			name = JSON;
-			sourceTree = "<group>";
-		};
-		FDCB3DDE1578BCF100810D66 /* SSKeychain */ = {
-			isa = PBXGroup;
-			children = (
-				FDE86D5B1578BA6000891E81 /* SSKeychain.h */,
-				FDE86D5C1578BA6000891E81 /* SSKeychain.m */,
-			);
-			name = SSKeychain;
-			sourceTree = "<group>";
-		};
-		FDE86D401578B94B00891E81 /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				FDE86D411578B95600891E81 /* JSONKit.h */,
-				FDE86D421578B95600891E81 /* JSONKit.m */,
-			);
-			name = JSONKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,19 +248,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDE86D5D1578BA6000891E85 /* SimpleFacebookConfiguration.h in Headers */,
 				FD4711AE1576881F00428920 /* SimpleFacebookShare.h in Headers */,
 				FD471208157774D200428924 /* SimpleTwitterShare.h in Headers */,
-				FDE86D211578B63600891E81 /* Facebook.h in Headers */,
-				FDE86D231578B63600891E81 /* FBConnect.h in Headers */,
-				FDE86D241578B63600891E81 /* FBDialog.h in Headers */,
-				FDE86D261578B63600891E81 /* FBFrictionlessRequestSettings.h in Headers */,
-				FDE86D281578B63600891E81 /* FBLoginDialog.h in Headers */,
-				FDE86D2A1578B63600891E81 /* FBRequest.h in Headers */,
-				FDCB3DDA1578BCD700810D66 /* JSON.h in Headers */,
-				FDCB3DDB1578BCD700810D66 /* SBJSON.h in Headers */,
 				FDE86D5D1578BA6000891E95 /* SimpleSafariShare.h in Headers */,
-				FDCB3DDC1578BCD700810D66 /* SBJSONtoJSONKit.h in Headers */,
 				FDE86D5D1578BA6000891E91 /* ViewControllerHelper.h in Headers */,
 				FDE86D5D1578BA6000891E8D /* SimpleMailShare.h in Headers */,
 			);
@@ -407,7 +329,8 @@
 				FD4711E5157769B800428920 /* ViewController_iPhone.xib in Resources */,
 				FD4711E8157769B800428920 /* ViewController_iPad.xib in Resources */,
 				FDE86D151578B5C300891E81 /* SVProgressHUD.bundle in Resources */,
-				FDE86D2D1578B64200891E81 /* FBDialog.bundle in Resources */,
+				53FC8887167C947C00FF6141 /* FacebookSDKResources.bundle in Resources */,
+				53FC8888167C947C00FF6141 /* FBUserSettingsViewResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,13 +343,6 @@
 			files = (
 				FD4711AF1576881F00428920 /* SimpleFacebookShare.m in Sources */,
 				FD471208157774D200428922 /* SimpleTwitterShare.m in Sources */,
-				FDE86D221578B63600891E81 /* Facebook.m in Sources */,
-				FDE86D251578B63600891E81 /* FBDialog.m in Sources */,
-				FDE86D271578B63600891E81 /* FBFrictionlessRequestSettings.m in Sources */,
-				FDE86D291578B63600891E81 /* FBLoginDialog.m in Sources */,
-				FDE86D2B1578B63600891E81 /* FBRequest.m in Sources */,
-				FDCB3DDD1578BCD700810D66 /* SBJSONtoJSONKit.m in Sources */,
-				FDE86D5D1578BA6000891E83 /* SimpleFacebookConfiguration.m in Sources */,
 				FDE86D5D1578BA6000891E8B /* SimpleMailShare.m in Sources */,
 				FDE86D5D1578BA6000891E8F /* ViewControllerHelper.m in Sources */,
 				FDE86D5D1578BA6000891E93 /* SimpleSafariShare.m in Sources */,
@@ -441,8 +357,6 @@
 				FD4711DF157769B800428920 /* AppDelegate.m in Sources */,
 				FD4711E2157769B800428920 /* ViewController.m in Sources */,
 				FDE86D131578B5AE00891E81 /* SVProgressHUD.m in Sources */,
-				FDE86D5A1578BA3200891E81 /* JSONKit.m in Sources */,
-				FDE86D5D1578BA6000891E81 /* SSKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,7 +417,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -520,7 +434,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -530,6 +444,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/simple_share.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/submodules/facebook-ios-sdk/build\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "simple-share/simple-share-Prefix.pch";
 				HEADER_SEARCH_PATHS = "submodules/**";
@@ -543,6 +461,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/simple_share.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/submodules/facebook-ios-sdk/build\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "simple-share/simple-share-Prefix.pch";
 				HEADER_SEARCH_PATHS = "submodules/**";
@@ -556,6 +478,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/submodules/facebook-ios-sdk/build\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "simple-share-demo/simple-share-demo-Prefix.pch";
 				INFOPLIST_FILE = "simple-share-demo/simple-share-demo-Info.plist";
@@ -570,6 +496,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/submodules/facebook-ios-sdk/build\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "simple-share-demo/simple-share-demo-Prefix.pch";
 				INFOPLIST_FILE = "simple-share-demo/simple-share-demo-Info.plist";

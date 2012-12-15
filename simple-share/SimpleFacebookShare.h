@@ -18,16 +18,15 @@
 //  limitations under the License.
 
 #import <Foundation/Foundation.h>
-#import "FBConnect.h"
+#import <FacebookSDK/FacebookSDK.h>
 
-@class SimpleFacebookConfiguration;
+@interface SimpleFacebookShare : NSObject
 
-@interface SimpleFacebookShare : NSObject <FBSessionDelegate, FBDialogDelegate>
-
-- (id) initWithSimpleFacebookConfiguration:(SimpleFacebookConfiguration *)theSimpleFacebookConfiguration;
+- (id)initWithAppName:(NSString *)theAppName appUrl:(NSString *)theAppUrl;
 - (BOOL) handleOpenURL:(NSURL *)theUrl;
-- (void) authorizesIfNeeded;
 - (void) logOut;
+- (void) close;
+- (void) handleDidBecomeActive;
 - (void) shareUrl:(NSURL *)theUrl;
 - (void) shareText:(NSString *)theText;
 
