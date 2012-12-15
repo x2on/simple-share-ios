@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>FacebookAppID</key>
-	<string>320824054661140</string>
+	<string>APPID</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
@@ -48,7 +48,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb320824054661140</string>
+				<string>fbAPPID</string>
 			</array>
 		</dict>
 	</array>
