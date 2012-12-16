@@ -25,10 +25,14 @@ cd submodules/facebook-ios-sdk/scripts
 Then run ```./build.sh``` and drop the libsimple-share.a file into your Xcode project.
 Copy the include folder also to your project and set the "Header Search Path" to this folder.
 
-you can share an URL to Facebook with this single line:
+For facebook you must also setup the App Id and the URL Scheme:
+(https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/3.1/)
+
+You can share an URL to Facebook with this single line:
 
 ```objective-c
 [facebookShare shareUrl:[NSURL URLWithString:@"http://www.felixschulze.de"]];
+[facebookShare shareText:@"Some text to share"];
 ```
 
 Twitter:
