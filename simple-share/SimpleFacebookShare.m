@@ -66,6 +66,7 @@
         [self _shareAndReauthorize:params];
     }
     else {
+        self.facebook = nil;
         [self _shareAndOpenSession:params];
     }
 }
@@ -111,7 +112,17 @@
 }
 
 - (void)_shareParams:(NSDictionary *)params {
+    // Initiate a Facebook instance and properties
+    if (_facebook == nil) {
+        self.facebook = [[Facebook alloc] initWithAppId:FBSession.activeSession.appID andDelegate:nil];
+        self.facebook.accessToken = FBSession.activeSession.accessToken;
+        self.facebook.expirationDate = FBSession.activeSession.expirationDate;
+    }
 
+    [_facebook dialog:@"feed" andParams:[params mutableCopy] andDelegate:self];
+/*
+    // Post without Facebook Dialog GUI:
+    
     [FBRequestConnection startWithGraphPath:@"me/feed"
                                  parameters:params
                                  HTTPMethod:@"POST"
@@ -124,6 +135,7 @@
                                   [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
                               }
                           }];
+ */
 }
 
 
@@ -134,5 +146,47 @@
 - (void)handleDidBecomeActive {
     [FBSession.activeSession handleDidBecomeActive];
 }
+
+#pragma mark - FBDialogDelegate
+
+- (void)dialogCompleteWithUrl:(NSURL *)url {
+    NSLog(@"URL: %@", url);
+    NSDictionary *params = [self _parseURLParams:[url query]];
+    if ([params valueForKey:@"post_id"]) {
+        [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
+    }
+}
+
+- (void)dialogDidNotCompleteWithUrl:(NSURL *)url {
+    //Do nothing
+}
+
+- (void)dialogDidNotComplete:(FBDialog *)dialog {
+    //Do nothing
+}
+
+- (void)dialogDidComplete:(FBDialog *)dialog {
+    //Do nothing
+}
+
+- (void)dialog:(FBDialog *)dialog didFailWithError:(NSError *)error {
+    NSLog(@"Fehler beim Speichern: %@", error);
+    [SVProgressHUD showErrorWithStatus:@"Fehler beim Speichern."];
+}
+
+- (NSDictionary *)_parseURLParams:(NSString *)query {
+    NSArray *pairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    for (NSString *pair in pairs) {
+        NSArray *kv = [pair componentsSeparatedByString:@"="];
+        NSString *val =
+                [[kv objectAtIndex:1]
+                        stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+        [params setObject:val forKey:[kv objectAtIndex:0]];
+    }
+    return params;
+}
+
 
 @end
