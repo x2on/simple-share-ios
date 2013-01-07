@@ -43,6 +43,8 @@
 
 
 - (void)logOut {
+    [_facebook logout];
+    self.facebook = nil;
     [FBSession.activeSession closeAndClearTokenInformation];
 }
 
@@ -140,18 +142,29 @@
 
 - (void) getUsernameWithCompletionHandler:(void (^)(NSString *username, NSError *error))completionHandler {
     if (completionHandler) {
-        [FBRequestConnection startWithGraphPath:@"me"
-                                     parameters:nil HTTPMethod:@"GET"
-                              completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                                  if (error) {
-                                      completionHandler(nil, error);
-                                  }
-                                  else {
-                                      NSString *username = [result objectForKey:@"name"];
-                                      completionHandler(username, nil);
-                                  }
-                              }];
+        if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+            __weak SimpleFacebookShare *selfForBlock = self;
+            [FBSession.activeSession openWithCompletionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+                [selfForBlock _getUserNameWithCompletionHandlerOnActiveSession:completionHandler];
+
+            }];
+        }
+        [self _getUserNameWithCompletionHandlerOnActiveSession:completionHandler];
     }
+}
+
+- (void) _getUserNameWithCompletionHandlerOnActiveSession:(void (^)(NSString *username, NSError *error))completionHandler {
+    [FBRequestConnection startWithGraphPath:@"me"
+                                 parameters:nil HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (error) {
+                                  completionHandler(nil, error);
+                              }
+                              else {
+                                  NSString *username = [result objectForKey:@"name"];
+                                  completionHandler(username, nil);
+                              }
+                          }];
 }
 
 - (BOOL) isLoggedIn {
