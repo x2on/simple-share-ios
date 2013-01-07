@@ -138,6 +138,31 @@
  */
 }
 
+- (void) getUsernameWithCompletionHandler:(void (^)(NSString *username, NSError *error))completionHandler {
+    if (completionHandler) {
+        [FBRequestConnection startWithGraphPath:@"me"
+                                     parameters:nil HTTPMethod:@"GET"
+                              completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                                  if (error) {
+                                      completionHandler(nil, error);
+                                  }
+                                  else {
+                                      NSString *username = [result objectForKey:@"name"];
+                                      completionHandler(username, nil);
+                                  }
+                              }];
+    }
+}
+
+- (BOOL) isLoggedIn {
+    FBSessionState state = FBSession.activeSession.state;
+    if (state == FBSessionStateOpen || state == FBSessionStateCreatedTokenLoaded || state == FBSessionStateOpenTokenExtended) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
 
 - (void)close {
     [FBSession.activeSession close];

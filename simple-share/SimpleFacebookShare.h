@@ -24,11 +24,13 @@
 
 - (id)initWithAppName:(NSString *)theAppName appUrl:(NSString *)theAppUrl;
 - (BOOL) handleOpenURL:(NSURL *)theUrl;
+- (BOOL) isLoggedIn;
 - (void) logOut;
 - (void) close;
 - (void) handleDidBecomeActive;
 - (void) shareUrl:(NSURL *)theUrl;
 - (void) shareText:(NSString *)theText;
+- (void) getUsernameWithCompletionHandler:(void (^)(NSString *username, NSError *error))completionHandler;
 
 @property (strong, nonatomic) Facebook *facebook;
 
