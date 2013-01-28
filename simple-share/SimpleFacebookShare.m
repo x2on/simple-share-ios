@@ -46,6 +46,20 @@
     [_facebook logout];
     self.facebook = nil;
     [FBSession.activeSession closeAndClearTokenInformation];
+    
+    //Delete data from User Defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"FBAccessTokenInformationKey"];
+    
+    //Remove facebook Cookies:
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (NSHTTPCookie *cookie in [storage cookies]) {
+        if ([cookie.domain isEqualToString:@".facebook.com"] || [cookie.domain isEqualToString:@"facebook.com"]) {
+            [storage deleteCookie:cookie];
+            NSLog(@"Delete facebook cookie: %@",cookie);
+        }
+    }
+    [defaults synchronize];
 }
 
 - (void)shareUrl:(NSURL *)theUrl {
@@ -188,10 +202,13 @@
 #pragma mark - FBDialogDelegate
 
 - (void)dialogCompleteWithUrl:(NSURL *)url {
-    NSLog(@"URL: %@", url);
     NSDictionary *params = [self _parseURLParams:[url query]];
     if ([params valueForKey:@"post_id"]) {
         [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
+    }
+    else if ([params valueForKey:@"error_code"]) {
+        [SVProgressHUD showErrorWithStatus:@"Leider ist ein Fehler aufgetreten."];
+        NSLog(@"Error: %@",[params valueForKey:@"error_msg"]);
     }
 }
 
