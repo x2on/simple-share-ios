@@ -32,17 +32,24 @@
     return [MFMailComposeViewController canSendMail];
 }
 
-- (void) shareText:(NSString *)text subject:(NSString *)subject isHTML:(BOOL)isHTML {
+- (void) shareText:(NSString *)text subject:(NSString *)subject toRecipient:(NSString *)toRecipient isHTML:(BOOL)isHTML {
     if ([self canSendMail]) {
         mailComposeViewController.mailComposeDelegate = nil;
         mailComposeViewController = [[MFMailComposeViewController alloc] init];
         mailComposeViewController.mailComposeDelegate = self;
         [mailComposeViewController setSubject:subject];
+        if (toRecipient) {
+            [mailComposeViewController setToRecipients:@[toRecipient]];
+        }
         [mailComposeViewController setMessageBody:text isHTML:isHTML];
-
+    
         UIViewController *viewController = [ViewControllerHelper getCurrentRootViewController];
         [viewController presentModalViewController:mailComposeViewController animated:YES];
     }
+}
+
+- (void) shareText:(NSString *)text subject:(NSString *)subject isHTML:(BOOL)isHTML {
+    [self shareText:text subject:subject toRecipient:nil isHTML:isHTML];
 }
 
 #pragma mark - MFMailComposeViewControllerDelegate
