@@ -15,6 +15,8 @@
 		53C6C848167BA8C100481CD7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53C6C847167BA8C100481CD7 /* QuartzCore.framework */; };
 		53FC8887167C947C00FF6141 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53FC8885167C947C00FF6141 /* FacebookSDKResources.bundle */; };
 		53FC8888167C947C00FF6141 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53FC8886167C947C00FF6141 /* FBUserSettingsViewResources.bundle */; };
+		D604A5108A8F5F211E05797B /* SimpleGoogleChromeShare.h in Headers */ = {isa = PBXBuildFile; fileRef = D604AA6123677F6F5F382AB3 /* SimpleGoogleChromeShare.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D604A9A5CB6E8ACA9EB2D87A /* SimpleGoogleChromeShare.m in Sources */ = {isa = PBXBuildFile; fileRef = D604AB467E921A163FF3D4B5 /* SimpleGoogleChromeShare.m */; };
 		FD47116E157686F300428920 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD47116D157686F300428920 /* Foundation.framework */; };
 		FD4711AE1576881F00428920 /* SimpleFacebookShare.h in Headers */ = {isa = PBXBuildFile; fileRef = FD4711AC1576881F00428920 /* SimpleFacebookShare.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FD4711AF1576881F00428920 /* SimpleFacebookShare.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4711AD1576881F00428920 /* SimpleFacebookShare.m */; };
@@ -97,6 +99,8 @@
 		53C6C847167BA8C100481CD7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		53FC8885167C947C00FF6141 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "submodules/facebook-ios-sdk/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = SOURCE_ROOT; };
 		53FC8886167C947C00FF6141 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = "submodules/facebook-ios-sdk/build/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle"; sourceTree = SOURCE_ROOT; };
+		D604AA6123677F6F5F382AB3 /* SimpleGoogleChromeShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGoogleChromeShare.h; sourceTree = "<group>"; };
+		D604AB467E921A163FF3D4B5 /* SimpleGoogleChromeShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleGoogleChromeShare.m; sourceTree = "<group>"; };
 		FD47116A157686F300428920 /* libsimple-share.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsimple-share.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD47116D157686F300428920 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FD471171157686F300428920 /* simple-share-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "simple-share-Prefix.pch"; sourceTree = "<group>"; };
@@ -261,6 +265,8 @@
 				FD4711AC1576881F00428920 /* SimpleFacebookShare.h */,
 				FD4711AD1576881F00428920 /* SimpleFacebookShare.m */,
 				FD471170157686F300428920 /* Supporting Files */,
+				D604AB467E921A163FF3D4B5 /* SimpleGoogleChromeShare.m */,
+				D604AA6123677F6F5F382AB3 /* SimpleGoogleChromeShare.h */,
 			);
 			path = "simple-share";
 			sourceTree = "<group>";
@@ -323,6 +329,7 @@
 				FD471208157774D200428924 /* SimpleTwitterShare.h in Headers */,
 				FDE86D5D1578BA6000891E95 /* SimpleSafariShare.h in Headers */,
 				FDE86D5D1578BA6000891E91 /* ViewControllerHelper.h in Headers */,
+				D604A5108A8F5F211E05797B /* SimpleGoogleChromeShare.h in Headers */,
 				FDE86D5D1578BA6000891E8D /* SimpleMailShare.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +424,7 @@
 				FDE86D5D1578BA6000891E8B /* SimpleMailShare.m in Sources */,
 				FDE86D5D1578BA6000891E8F /* ViewControllerHelper.m in Sources */,
 				FDE86D5D1578BA6000891E93 /* SimpleSafariShare.m in Sources */,
+				D604A9A5CB6E8ACA9EB2D87A /* SimpleGoogleChromeShare.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
