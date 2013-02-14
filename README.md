@@ -8,6 +8,7 @@ Simple-Share is an easy drop-in library for sharing on iOS.
 - Twitter
 - Mail
 - Safari
+- Google Chrome
 
 ## Instructions
 First checkout the submodules:
@@ -43,6 +44,11 @@ Twitter:
 Mail:
 ```objective-c
 [simpleMailShare shareText:@"Some text" subject:@"Some subject" isHTML:NO];
+```
+
+Google Chrome:
+```objective-c
+[googleChromeShare openInChrome:[NSURL URLWithString:@"http://www.felixschulze.de"]];
 ```
 
 ## Compatibility
