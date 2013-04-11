@@ -89,7 +89,7 @@
 
 - (void)_shareAndReauthorize:(NSDictionary *)params {
     if ([FBSession.activeSession.permissions indexOfObject:@"publish_stream"] == NSNotFound) {
-        [FBSession.activeSession reauthorizeWithPublishPermissions:[NSArray arrayWithObject:@"publish_stream"]
+        [FBSession.activeSession requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_stream"]
                                                    defaultAudience:FBSessionDefaultAudienceFriends
                                                  completionHandler:^(FBSession *session, NSError *error) {
                                                      if (!error) {
