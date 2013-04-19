@@ -20,6 +20,8 @@
 	<string>1.0</string>
 	<key>FacebookAppID</key>
 	<string>APPID</string>
+	<key>FacebookDisplayName</key>
+	<string>APPNAME</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>

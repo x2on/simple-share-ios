@@ -88,8 +88,8 @@
 }
 
 - (void)_shareAndReauthorize:(NSDictionary *)params {
-    if ([FBSession.activeSession.permissions indexOfObject:@"publish_stream"] == NSNotFound) {
-        [FBSession.activeSession requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_stream"]
+    if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
+        [FBSession.activeSession requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
                                                    defaultAudience:FBSessionDefaultAudienceFriends
                                                  completionHandler:^(FBSession *session, NSError *error) {
                                                      if (!error) {
@@ -115,7 +115,7 @@
         }];
     }
     else {
-        [FBSession openActiveSessionWithPermissions:[NSArray arrayWithObject:@"publish_stream"] allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+        [FBSession openActiveSessionWithPublishPermissions:@[@"publish_actions"] defaultAudience:FBSessionDefaultAudienceFriends allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
             if (error) {
                 NSLog(@"Fehler bei der Authorizierung: %@", error);
                 [SVProgressHUD showErrorWithStatus:@"Fehler bei der Authorizierung."];
@@ -136,22 +136,6 @@
     }
 
     [_facebook dialog:@"feed" andParams:[params mutableCopy] andDelegate:self];
-/*
-    // Post without Facebook Dialog GUI:
-    
-    [FBRequestConnection startWithGraphPath:@"me/feed"
-                                 parameters:params
-                                 HTTPMethod:@"POST"
-                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-                              if (error) {
-                                  NSLog(@"Fehler beim Speichern: %@", error);
-                                  [SVProgressHUD showErrorWithStatus:@"Fehler beim Speichern."];
-                              }
-                              else {
-                                  [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
-                              }
-                          }];
- */
 }
 
 - (void) getUsernameWithCompletionHandler:(void (^)(NSString *username, NSError *error))completionHandler {
