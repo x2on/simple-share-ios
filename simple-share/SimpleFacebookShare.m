@@ -17,6 +17,9 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 
+#import "FBSession.h"
+#import "FBWebDialogs.h"
+#import "FBRequestConnection.h"
 #import "SimpleFacebookShare.h"
 #import "SVProgressHUD.h"
 
@@ -43,20 +46,18 @@
 
 
 - (void)logOut {
-    [_facebook logout];
-    self.facebook = nil;
     [FBSession.activeSession closeAndClearTokenInformation];
-    
+
     //Delete data from User Defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"FBAccessTokenInformationKey"];
-    
+
     //Remove facebook Cookies:
     NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     for (NSHTTPCookie *cookie in [storage cookies]) {
         if ([cookie.domain isEqualToString:@".facebook.com"] || [cookie.domain isEqualToString:@"facebook.com"]) {
             [storage deleteCookie:cookie];
-            NSLog(@"Delete facebook cookie: %@",cookie);
+            NSLog(@"Delete facebook cookie: %@", cookie);
         }
     }
     [defaults synchronize];
@@ -82,7 +83,6 @@
         [self _shareAndReauthorize:params];
     }
     else {
-        self.facebook = nil;
         [self _shareAndOpenSession:params];
     }
 }
@@ -90,17 +90,17 @@
 - (void)_shareAndReauthorize:(NSDictionary *)params {
     if ([FBSession.activeSession.permissions indexOfObject:@"publish_actions"] == NSNotFound) {
         [FBSession.activeSession requestNewPublishPermissions:[NSArray arrayWithObject:@"publish_actions"]
-                                                   defaultAudience:FBSessionDefaultAudienceFriends
-                                                 completionHandler:^(FBSession *session, NSError *error) {
-                                                     if (!error) {
-                                                         NSLog(@"Fehler bei der Authorizierung: %@", error);
-                                                         [SVProgressHUD showErrorWithStatus:@"Fehler bei der Authorizierung."];
-                                                     }
-                                                     else {
-                                                         [self _shareParams:params];
+                                              defaultAudience:FBSessionDefaultAudienceFriends
+                                            completionHandler:^(FBSession *session, NSError *error) {
+                                                if (!error) {
+                                                    NSLog(@"Fehler bei der Authorizierung: %@", error);
+                                                    [SVProgressHUD showErrorWithStatus:@"Fehler bei der Authorizierung."];
+                                                }
+                                                else {
+                                                    [self _shareParams:params];
 
-                                                     }
-                                                 }];
+                                                }
+                                            }];
     }
     else {
         [self _shareParams:params];
@@ -128,17 +128,25 @@
 }
 
 - (void)_shareParams:(NSDictionary *)params {
-    // Initiate a Facebook instance and properties
-    if (_facebook == nil) {
-        self.facebook = [[Facebook alloc] initWithAppId:FBSession.activeSession.appID andDelegate:nil];
-        self.facebook.accessToken = FBSession.activeSession.accessToken;
-        self.facebook.expirationDate = FBSession.activeSession.expirationDate;
-    }
-
-    [_facebook dialog:@"feed" andParams:[params mutableCopy] andDelegate:self];
+    __weak SimpleFacebookShare *selfForBlock = self;
+    [FBWebDialogs presentFeedDialogModallyWithSession:nil parameters:params handler:^(FBWebDialogResult result, NSURL *resultURL, NSError *error) {
+        if (error) {
+            NSLog(@"Fehler beim Speichern: %@", error);
+            [SVProgressHUD showErrorWithStatus:@"Fehler beim Speichern."];
+        } else {
+            NSDictionary *resultParams = [selfForBlock _parseURLParams:[resultURL query]];
+            if ([resultParams valueForKey:@"post_id"]) {
+                [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
+            }
+            else if ([resultParams valueForKey:@"error_code"]) {
+                [SVProgressHUD showErrorWithStatus:@"Leider ist ein Fehler aufgetreten."];
+                NSLog(@"Error: %@", [resultParams valueForKey:@"error_msg"]);
+            }
+        }
+    }];
 }
 
-- (void) getUsernameWithCompletionHandler:(void (^)(NSString *username, NSError *error))completionHandler {
+- (void)getUsernameWithCompletionHandler:(void (^)(NSString *username, NSError *error))completionHandler {
     if (completionHandler) {
         if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
             __weak SimpleFacebookShare *selfForBlock = self;
@@ -151,7 +159,7 @@
     }
 }
 
-- (void) _getUserNameWithCompletionHandlerOnActiveSession:(void (^)(NSString *username, NSError *error))completionHandler {
+- (void)_getUserNameWithCompletionHandlerOnActiveSession:(void (^)(NSString *username, NSError *error))completionHandler {
     [FBRequestConnection startWithGraphPath:@"me"
                                  parameters:nil HTTPMethod:@"GET"
                           completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
@@ -165,7 +173,7 @@
                           }];
 }
 
-- (BOOL) isLoggedIn {
+- (BOOL)isLoggedIn {
     FBSessionState state = FBSession.activeSession.state;
     if (state == FBSessionStateOpen || state == FBSessionStateCreatedTokenLoaded || state == FBSessionStateOpenTokenExtended) {
         return YES;
@@ -183,37 +191,7 @@
     [FBSession.activeSession handleDidBecomeActive];
 }
 
-#pragma mark - FBDialogDelegate
-
-- (void)dialogCompleteWithUrl:(NSURL *)url {
-    NSDictionary *params = [self _parseURLParams:[url query]];
-    if ([params valueForKey:@"post_id"]) {
-        [SVProgressHUD showSuccessWithStatus:@"Gespeichert"];
-    }
-    else if ([params valueForKey:@"error_code"]) {
-        [SVProgressHUD showErrorWithStatus:@"Leider ist ein Fehler aufgetreten."];
-        NSLog(@"Error: %@",[params valueForKey:@"error_msg"]);
-    }
-}
-
-- (void)dialogDidNotCompleteWithUrl:(NSURL *)url {
-    //Do nothing
-}
-
-- (void)dialogDidNotComplete:(FBDialog *)dialog {
-    //Do nothing
-}
-
-- (void)dialogDidComplete:(FBDialog *)dialog {
-    //Do nothing
-}
-
-- (void)dialog:(FBDialog *)dialog didFailWithError:(NSError *)error {
-    NSLog(@"Fehler beim Speichern: %@", error);
-    [SVProgressHUD showErrorWithStatus:@"Fehler beim Speichern."];
-}
-
-- (NSDictionary *)_parseURLParams:(NSString *)query {
+- (NSDictionary *) _parseURLParams:(NSString *)query {
     NSArray *pairs = [query componentsSeparatedByString:@"&"];
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     for (NSString *pair in pairs) {

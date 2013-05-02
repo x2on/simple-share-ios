@@ -18,9 +18,8 @@
 //  limitations under the License.
 
 #import <Foundation/Foundation.h>
-#import "Facebook.h"
 
-@interface SimpleFacebookShare : NSObject<FBDialogDelegate>
+@interface SimpleFacebookShare : NSObject
 
 - (id)initWithAppName:(NSString *)theAppName appUrl:(NSString *)theAppUrl;
 - (BOOL) handleOpenURL:(NSURL *)theUrl;
@@ -31,7 +30,5 @@
 - (void) shareUrl:(NSURL *)theUrl;
 - (void) shareText:(NSString *)theText;
 - (void) getUsernameWithCompletionHandler:(void (^)(NSString *username, NSError *error))completionHandler;
-
-@property (strong, nonatomic) Facebook *facebook;
 
 @end
