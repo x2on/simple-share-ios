@@ -28,7 +28,7 @@
 - (void) close;
 - (void) handleDidBecomeActive;
 - (void) shareUrl:(NSURL *)theUrl;
-- (void) shareText:(NSString *)theText;
+- (void) shareText:(NSString *)theText DEPRECATED_ATTRIBUTE;
 - (void) getUsernameWithCompletionHandler:(void (^)(NSString *username, NSError *error))completionHandler;
 
 @end
