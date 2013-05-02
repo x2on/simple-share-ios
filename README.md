@@ -4,7 +4,7 @@
 Simple-Share is an easy drop-in library for sharing on iOS.
 
 ### Supported Shares
-- Facebook (facebook-ios-sdk 3.2.1)
+- Facebook (facebook-ios-sdk 3.5.1)
 - Twitter
 - Mail
 - Safari
@@ -26,14 +26,13 @@ cd submodules/facebook-ios-sdk/scripts
 Then run ```./build.sh``` and drop the libsimple-share.a file into your Xcode project.
 Copy the include folder also to your project and set the "Header Search Path" to this folder.
 
-For facebook you must also setup the App Id and the URL Scheme:
-(https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/3.1/)
+For facebook you must also setup the App Id, App Name and the URL Scheme:
+(https://developers.facebook.com/docs/getting-started/facebook-sdk-for-ios/)
 
 You can share an URL to Facebook with this single line:
 
 ```objective-c
 [facebookShare shareUrl:[NSURL URLWithString:@"http://www.felixschulze.de"]];
-[facebookShare shareText:@"Some text to share"];
 ```
 
 Twitter:
