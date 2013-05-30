@@ -21,6 +21,7 @@
 #import "SimpleFacebookShare.h"
 #import "SimpleTwitterShare.h"
 #import "SimpleMailShare.h"
+#import "SimpleGoogleChromeShare.h"
 
 @interface ViewController ()
 
@@ -29,6 +30,7 @@
 @implementation ViewController {
     SimpleFacebookShare *facebookShare;
     SimpleMailShare *simpleMailShare;
+    SimpleGoogleChromeShare *chromeShare;
 }
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil simpleFacebookShare:(SimpleFacebookShare *)theSimpleFacebookShare {
@@ -36,6 +38,7 @@
     if (self) {
         facebookShare = theSimpleFacebookShare;
         simpleMailShare = [[SimpleMailShare alloc] init];
+        chromeShare = [[SimpleGoogleChromeShare alloc] init];
     }
     return self;
 }
@@ -67,4 +70,13 @@
 - (IBAction)mailButtonPressed:(id)sender {
     [simpleMailShare shareText:@"Some text" subject:@"Some subject" isHTML:NO];
 }
+
+- (IBAction)chromeButtonPressed:(id)sender {
+    [chromeShare openInChrome:[NSURL URLWithString:@"http://www.felixschulze.de"]];
+}
+
+- (IBAction)chromeButtonWithCallbackPressed:(id)sender {
+    [chromeShare openInChrome:[NSURL URLWithString:@"http://www.felixschulze.de"] callbackUrl:[NSURL URLWithString:@"simple-share-demo://"]];
+}
+
 @end

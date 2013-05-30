@@ -19,34 +19,30 @@
 
 #import <UIKit/UIKit.h>
 #import "SimpleGoogleChromeShare.h"
-
+#import "OpenInChromeController.h"
 
 @implementation SimpleGoogleChromeShare {
-
+    OpenInChromeController *openInChromeController;
 }
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        openInChromeController = [[OpenInChromeController alloc] init];
+    }
+    return self;
+}
+
 - (BOOL) canOpenInChrome {
-    return [[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"googlechrome://"]];;
+    return [openInChromeController isChromeInstalled];
 }
 
-- (void) openInChrome:(NSURL *)theUrl {
-    NSString *scheme = theUrl.scheme;
+- (BOOL) openInChrome:(NSURL *)theUrl {
+    return [openInChromeController openInChrome:theUrl];
+}
 
-    NSString *chromeScheme = nil;
-    if ([scheme isEqualToString:@"http"]) {
-        chromeScheme = @"googlechrome";
-    } else if ([scheme isEqualToString:@"https"]) {
-        chromeScheme = @"googlechromes";
-    }
-
-    if (chromeScheme) {
-        NSString *absoluteString = [theUrl absoluteString];
-        NSRange rangeForScheme = [absoluteString rangeOfString:@":"];
-        NSString *urlNoScheme = [absoluteString substringFromIndex:rangeForScheme.location];
-        NSString *chromeURLString = [chromeScheme stringByAppendingString:urlNoScheme];
-        NSURL *chromeURL = [NSURL URLWithString:chromeURLString];
-
-        [[UIApplication sharedApplication] openURL:chromeURL];
-    }
+- (BOOL) openInChrome:(NSURL *)theUrl callbackUrl:(NSURL *)theCallbackUrl {
+    return [openInChromeController openInChrome:theUrl withCallbackURL:theCallbackUrl createNewTab:NO];
 }
 
 

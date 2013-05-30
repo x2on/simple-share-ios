@@ -37,6 +37,7 @@
 		FD47123315777EE500428920 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD47122F15777ED900428920 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FD9662E6161201A0005EB4C8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9662E5161201A0005EB4C8 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		FD9662ED1612055D005EB4C8 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD9662E5161201A0005EB4C8 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		FDC351C31757532D00466B65 /* OpenInChromeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D604A86764D1382AE5E8A013 /* OpenInChromeController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FDCB3E2E1578DD7D00810D66 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCB3E2C1578DD7300810D66 /* MessageUI.framework */; };
 		FDCB3E2F1578DD7F00810D66 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDCB3E2C1578DD7300810D66 /* MessageUI.framework */; };
 		FDE86D131578B5AE00891E81 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FD4711AF1576881F00428951 /* SVProgressHUD.m */; };
@@ -66,6 +67,8 @@
 		53C6C845167BA89F00481CD7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		53C6C847167BA8C100481CD7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		53FC8885167C947C00FF6141 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = "submodules/facebook-ios-sdk/build/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle"; sourceTree = SOURCE_ROOT; };
+		D604A14440C84C33DE7A9540 /* OpenInChromeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OpenInChromeController.h; path = submodules/OpenInChrome/OpenInChromeController.h; sourceTree = SOURCE_ROOT; };
+		D604A86764D1382AE5E8A013 /* OpenInChromeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OpenInChromeController.m; path = submodules/OpenInChrome/OpenInChromeController.m; sourceTree = SOURCE_ROOT; };
 		D604AA6123677F6F5F382AB3 /* SimpleGoogleChromeShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleGoogleChromeShare.h; sourceTree = "<group>"; };
 		D604AB467E921A163FF3D4B5 /* SimpleGoogleChromeShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleGoogleChromeShare.m; sourceTree = "<group>"; };
 		FD47116A157686F300428920 /* libsimple-share.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libsimple-share.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +143,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D604A70B08D04B87C71C0CE5 /* OpenInChrome */ = {
+			isa = PBXGroup;
+			children = (
+				D604A86764D1382AE5E8A013 /* OpenInChromeController.m */,
+				D604A14440C84C33DE7A9540 /* OpenInChromeController.h */,
+			);
+			name = OpenInChrome;
+			path = "simple-share-demo/OpenInChrome";
+			sourceTree = "<group>";
+		};
 		FD47115F157686F300428920 = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +175,7 @@
 		FD47116C157686F300428920 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D604A70B08D04B87C71C0CE5 /* OpenInChrome */,
 				53C6C847167BA8C100481CD7 /* QuartzCore.framework */,
 				53C6C845167BA89F00481CD7 /* libsqlite3.dylib */,
 				53C6C843167BA84C00481CD7 /* AdSupport.framework */,
@@ -350,6 +364,7 @@
 				FDE86D5D1578BA6000891E8F /* ViewControllerHelper.m in Sources */,
 				FDE86D5D1578BA6000891E93 /* SimpleSafariShare.m in Sources */,
 				D604A9A5CB6E8ACA9EB2D87A /* SimpleGoogleChromeShare.m in Sources */,
+				FDC351C31757532D00466B65 /* OpenInChromeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

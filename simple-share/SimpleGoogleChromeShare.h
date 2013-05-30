@@ -23,6 +23,8 @@
 
 - (BOOL) canOpenInChrome;
 
-- (void) openInChrome:(NSURL *)theUrl;
+- (BOOL) openInChrome:(NSURL *)theUrl;
+
+- (BOOL) openInChrome:(NSURL *)theUrl callbackUrl:(NSURL *)theCallbackUrl;
 
 @end

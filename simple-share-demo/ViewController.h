@@ -28,5 +28,7 @@
 - (IBAction)facebookShareButtonPressed:(id)sender;
 - (IBAction)twitterButtonPressed:(id)sender;
 - (IBAction)mailButtonPressed:(id)sender;
+- (IBAction)chromeButtonPressed:(id)sender;
+- (IBAction)chromeButtonWithCallbackPressed:(id)sender;
 
 @end
